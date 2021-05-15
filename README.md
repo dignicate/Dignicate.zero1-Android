@@ -1,0 +1,1 @@
+# Dignicate-SampleStructure-Android
