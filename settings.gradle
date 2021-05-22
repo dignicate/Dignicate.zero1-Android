@@ -1,0 +1,2 @@
+rootProject.name = "Dignicate.zero1"
+include ':app'
