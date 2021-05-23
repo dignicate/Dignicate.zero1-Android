@@ -1,9 +1,9 @@
-package com.dignicate.zero1
+package com.dignicate.zero1.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.dignicate.zero1.R
 import com.dignicate.zero1.databinding.MainActivityBinding
-import com.dignicate.zero1.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
