@@ -10,7 +10,6 @@ class MainViewModel : ViewModel() {
     }
 
     object ContentStructure {
-
         private val listOfRowState: List<RowState>
             get() {
                 val mutable = ArrayList<RowState>()
@@ -23,8 +22,12 @@ class MainViewModel : ViewModel() {
                 return mutable
             }
 
-        val numberOfSections: Int
-            get() = Section.values().size
+        val numberOfRows: Int
+            get() = listOfRowState.size
+
+        fun rowOf(sequentialIndex: Int): RowState {
+            return listOfRowState[sequentialIndex]
+        }
     }
 
     enum class Section(val index: Int,

@@ -38,16 +38,27 @@ class MainFragment : Fragment() {
                   private val viewModel: MainViewModel
     ) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
+        enum class ViewType(val value: Int) {
+            SECTION(0),
+            ITEM(1);
+        }
+
+        override fun getItemViewType(position: Int): Int {
+            return when (MainViewModel.ContentStructure.rowOf(position)) {
+                is MainViewModel.RowState.SectionRow -> ViewType.SECTION.value
+                is MainViewModel.RowState.ItemRow -> ViewType.ITEM.value
+            }
+        }
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             return ViewHolder(recyclerView)
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            TODO("Not yet implemented")
         }
 
         override fun getItemCount(): Int {
-            TODO("Not yet implemented")
+            return MainViewModel.ContentStructure.numberOfRows
         }
 
         class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
