@@ -33,12 +33,13 @@ class MainFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-    class Adapter(private val data: String,
+    class Adapter(private val recyclerView: RecyclerView,
+                  private val data: String,
                   private val viewModel: MainViewModel
     ) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
+            return ViewHolder(recyclerView)
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
