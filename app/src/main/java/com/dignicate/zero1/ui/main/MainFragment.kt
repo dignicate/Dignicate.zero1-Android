@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.dignicate.zero1.R
 import com.dignicate.zero1.databinding.MainFragmentBinding
 
 class MainFragment : Fragment() {
@@ -18,6 +19,8 @@ class MainFragment : Fragment() {
     private lateinit var binding: MainFragmentBinding
 
     private lateinit var viewModel: MainViewModel
+
+    private lateinit var adapter: Adapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +34,14 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
+
+        setupRecycleView()
+    }
+
+    private fun setupRecycleView() {
+        binding.mainFragmentRecyclerView.apply {
+            adapter = Adapter(this, "", viewModel)
+        }
     }
 
     class Adapter(private val recyclerView: RecyclerView,
@@ -51,10 +62,15 @@ class MainFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            return ViewHolder(recyclerView)
+            return when (viewType) {
+                ViewType.SECTION.value -> ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.main_row_section, parent, false))
+                ViewType.ITEM.value -> ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.main_row_item, parent, false))
+                else -> throw IllegalStateException("Unexpected viewType: $viewType")
+            }
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            println("position: $position")
         }
 
         override fun getItemCount(): Int {
