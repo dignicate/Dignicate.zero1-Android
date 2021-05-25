@@ -64,6 +64,7 @@ class MainFragment : Fragment() {
         binding.mainFragmentRecyclerView.apply {
             setHasFixedSize(true)
             adapter = Adapter()
+            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         }
     }
 
