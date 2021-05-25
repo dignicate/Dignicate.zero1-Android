@@ -1,12 +1,18 @@
 package com.dignicate.zero1
 
 import android.app.Application
+import timber.log.Timber
 
 class AppClass : Application() {
 
     companion object {
 
         lateinit var shared: AppClass
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        Timber.plant(Timber.DebugTree())
     }
 }
 
