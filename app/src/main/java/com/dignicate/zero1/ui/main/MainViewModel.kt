@@ -1,8 +1,31 @@
 package com.dignicate.zero1.ui.main
 
 import androidx.lifecycle.ViewModel
+import com.dignicate.zero1.rx.DisposeBag
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 
 class MainViewModel : ViewModel() {
+
+    private val disposeBag = DisposeBag()
+
+    private val rowStatesSubject = PublishSubject.create<List<RowState>>()
+
+    val rowStates: Observable<List<RowState>>
+        get() = rowStatesSubject
+
+    fun onActivityCreated() {
+        rowStatesSubject.onNext(ContentStructure.rowStates)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposeBag.clear()
+    }
+
+    fun rowStateOf(position: Int): RowState {
+        return ContentStructure.rowOf(position)
+    }
 
     sealed class RowState {
         class SectionRow(section: Section): RowState()
@@ -10,7 +33,7 @@ class MainViewModel : ViewModel() {
     }
 
     object ContentStructure {
-        private val listOfRowState: List<RowState>
+        val rowStates: List<RowState>
             get() {
                 val mutable = ArrayList<RowState>()
                 Section.values().forEach { section ->
@@ -23,10 +46,10 @@ class MainViewModel : ViewModel() {
             }
 
         val numberOfRows: Int
-            get() = listOfRowState.size
+            get() = rowStates.size
 
         fun rowOf(sequentialIndex: Int): RowState {
-            return listOfRowState[sequentialIndex]
+            return rowStates[sequentialIndex]
         }
     }
 
