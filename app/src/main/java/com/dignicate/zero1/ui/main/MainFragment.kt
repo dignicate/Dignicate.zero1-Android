@@ -9,8 +9,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dignicate.zero1.R
 import com.dignicate.zero1.databinding.MainFragmentBinding
+import com.dignicate.zero1.rx.DisposeBag
 
 class MainFragment : Fragment() {
+
+    private val disposeBag = DisposeBag()
 
     companion object {
         fun newInstance() = MainFragment()
@@ -47,12 +50,11 @@ class MainFragment : Fragment() {
     private fun setupRecycleView() {
         binding.mainFragmentRecyclerView.apply {
             setHasFixedSize(true)
-            adapter = Adapter(this, "", viewModel)
+            adapter = Adapter("", viewModel)
         }
     }
 
-    class Adapter(private val recyclerView: RecyclerView,
-                  private val data: String,
+    class Adapter(private val data: String,
                   private val viewModel: MainViewModel
     ) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
