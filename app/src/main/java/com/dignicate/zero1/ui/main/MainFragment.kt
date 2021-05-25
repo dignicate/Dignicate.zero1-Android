@@ -35,11 +35,18 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
 
+        setupBinding()
         setupRecycleView()
+
+    }
+
+    private fun setupBinding() {
+
     }
 
     private fun setupRecycleView() {
         binding.mainFragmentRecyclerView.apply {
+            setHasFixedSize(true)
             adapter = Adapter(this, "", viewModel)
         }
     }

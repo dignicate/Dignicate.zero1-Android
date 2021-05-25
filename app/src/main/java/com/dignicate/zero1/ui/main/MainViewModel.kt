@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
 
+
     sealed class RowState {
         class SectionRow(section: Section): RowState()
         class ItemRow(item: Item): RowState()
