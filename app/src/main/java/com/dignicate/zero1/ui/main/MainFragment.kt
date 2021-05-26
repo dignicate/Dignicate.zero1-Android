@@ -102,7 +102,7 @@ class MainFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return MainViewModel.ContentStructure.numberOfRows
+            return data.size
         }
 
         class ViewHolder(view: View) : RecyclerView.ViewHolder(view)

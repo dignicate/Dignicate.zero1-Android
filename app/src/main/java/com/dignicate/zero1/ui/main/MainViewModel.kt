@@ -23,10 +23,6 @@ class MainViewModel : ViewModel() {
         disposeBag.clear()
     }
 
-    fun rowStateOf(position: Int): RowState {
-        return ContentStructure.rowOf(position)
-    }
-
     sealed class RowState {
         class SectionRow(section: Section): RowState()
         class ItemRow(item: Item): RowState()
@@ -45,9 +41,6 @@ class MainViewModel : ViewModel() {
                 return mutable
             }
 
-        val numberOfRows: Int
-            get() = rowStates.size
-
         fun rowOf(sequentialIndex: Int): RowState {
             return rowStates[sequentialIndex]
         }
@@ -59,9 +52,6 @@ class MainViewModel : ViewModel() {
         BASIC(0, "Basic Data Interaction", listOf(Item.BASIC_FETCH)),
         RECYCLER_VIEW(1, "Recycler View", emptyList()),
         USER_INPUT(2, "User Input", emptyList());
-
-        val numberOfItems: Int
-            get() = items.size
     }
 
     enum class Item(private val title: String, private val isAvailable: Boolean) {
