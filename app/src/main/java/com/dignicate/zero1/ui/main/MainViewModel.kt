@@ -24,8 +24,24 @@ class MainViewModel : ViewModel() {
     }
 
     sealed class RowState {
-        class SectionRow(section: Section): RowState()
-        class ItemRow(item: Item): RowState()
+        class SectionRow(val data: Section): RowState()
+        class ItemRow(val data: Item, val indexInSection: Int): RowState()
+
+        val section: Section?
+            get() {
+                return when (this) {
+                    is SectionRow -> data
+                    is ItemRow -> null
+                }
+            }
+
+        val indexedItem: Pair<Item, Int>?
+            get() {
+                return when (this) {
+                    is SectionRow -> null
+                    is ItemRow -> Pair(data, indexInSection)
+                }
+            }
     }
 
     object ContentStructure {
@@ -34,8 +50,8 @@ class MainViewModel : ViewModel() {
                 val mutable = ArrayList<RowState>()
                 Section.values().forEach { section ->
                     mutable.add(RowState.SectionRow(section))
-                    section.items.forEach { item ->
-                        mutable.add(RowState.ItemRow(item))
+                    section.items.forEachIndexed { index, item ->
+                        mutable.add(RowState.ItemRow(item, index))
                     }
                 }
                 return mutable
@@ -49,12 +65,18 @@ class MainViewModel : ViewModel() {
     enum class Section(val index: Int,
                        val title: String,
                        val items: List<Item>) {
-        BASIC(0, "Basic Data Interaction", listOf(Item.BASIC_FETCH)),
+        BASIC(0, "Basic Data Interaction", listOf(
+            Item.BASIC_FETCH,
+            Item.FETCH_WITH_DATA_STATE,
+            Item.FETCH_DATA_AND_SAVE_CACHE
+        )),
         RECYCLER_VIEW(1, "Recycler View", emptyList()),
         USER_INPUT(2, "User Input", emptyList());
     }
 
-    enum class Item(private val title: String, private val isAvailable: Boolean) {
-        BASIC_FETCH("Basic fetch over HTTP", true);
+    enum class Item(val title: String, val isAvailable: Boolean) {
+        BASIC_FETCH("Basic fetch over HTTP", true),
+        FETCH_WITH_DATA_STATE("Fetch with data state", false),
+        FETCH_DATA_AND_SAVE_CACHE("Save fetched data into local device", false);
     }
 }
