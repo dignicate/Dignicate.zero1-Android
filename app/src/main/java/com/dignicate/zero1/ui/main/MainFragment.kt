@@ -1,5 +1,6 @@
 package com.dignicate.zero1.ui.main
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import com.dignicate.zero1.R
 import com.dignicate.zero1.databinding.MainFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.disposedBy
+import com.dignicate.zero1.ui.subject01.case101.BasicFetchActivity
 import timber.log.Timber
 
 class MainFragment : Fragment() {
@@ -45,8 +47,6 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
-
         setupRecycleView()
         setupBinding()
         viewModel.onActivityCreated()
@@ -68,8 +68,7 @@ class MainFragment : Fragment() {
             adapter = Adapter {
                 when (it) {
                     MainViewModel.Item.BASIC_FETCH -> {
-                        // TODO:
-                        // Start new activity.
+                        startActivity(Intent(requireContext(), BasicFetchActivity::class.java))
                     }
                     else -> {
 

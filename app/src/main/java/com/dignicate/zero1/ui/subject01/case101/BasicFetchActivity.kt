@@ -3,7 +3,6 @@ package com.dignicate.zero1.ui.subject01.case101
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.dignicate.zero1.R
-import com.dignicate.zero1.ui.subject01.case101.ui.basicfetch.BasicFetchFragment
 
 class BasicFetchActivity : AppCompatActivity() {
 
