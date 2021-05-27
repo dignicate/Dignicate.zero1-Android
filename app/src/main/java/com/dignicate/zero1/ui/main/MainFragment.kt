@@ -64,14 +64,22 @@ class MainFragment : Fragment() {
     private fun setupRecycleView() {
         binding.mainFragmentRecyclerView.apply {
             setHasFixedSize(true)
-            adapter = Adapter {
-
-            }
             layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+            adapter = Adapter {
+                when (it) {
+                    MainViewModel.Item.BASIC_FETCH -> {
+                        // TODO:
+                        // Start new activity.
+                    }
+                    else -> {
+
+                    }
+                }
+            }
         }
     }
 
-    class Adapter(val onClick: () -> Unit) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+    class Adapter(val onClick: (MainViewModel.Item) -> Unit) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
         private var data: List<MainViewModel.RowState> = emptyList()
 
@@ -113,7 +121,7 @@ class MainFragment : Fragment() {
                         number = indexedItem.second + 1,
                         item = indexedItem.first,
                         onClick = { item ->
-                            println("item: $item")
+                            onClick.invoke(item)
                         }
                     )
                 }
