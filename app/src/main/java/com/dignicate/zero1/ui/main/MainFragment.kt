@@ -64,12 +64,14 @@ class MainFragment : Fragment() {
     private fun setupRecycleView() {
         binding.mainFragmentRecyclerView.apply {
             setHasFixedSize(true)
-            adapter = Adapter()
+            adapter = Adapter {
+
+            }
             layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         }
     }
 
-    class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
+    class Adapter(val onClick: () -> Unit) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
         private var data: List<MainViewModel.RowState> = emptyList()
 
@@ -107,7 +109,13 @@ class MainFragment : Fragment() {
                 }
                 is ItemViewHolder -> {
                     val indexedItem = data[position].indexedItem ?: return
-                    holder.configure(indexedItem.second + 1, indexedItem.first)
+                    holder.configure(
+                        number = indexedItem.second + 1,
+                        item = indexedItem.first,
+                        onClick = { item ->
+                            println("item: $item")
+                        }
+                    )
                 }
             }
         }
@@ -131,9 +139,10 @@ class MainFragment : Fragment() {
             private val titleLabel: TextView = view.findViewById(R.id.mainRowItemTitle)
             private val background: View = view.findViewById(R.id.mainRowItemRoot)
 
-            fun configure(number: Int, item: MainViewModel.Item) {
+            fun configure(number: Int, item: MainViewModel.Item, onClick: (MainViewModel.Item) -> Unit) {
                 numberLabel.text = "$number"
                 titleLabel.text = item.title
+                background.setOnClickListener { onClick(item) }
                 if (item.isAvailable) {
                     background.setBackgroundResource(R.color.top_view_cell_background_enabled)
                 } else {
