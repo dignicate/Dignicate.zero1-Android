@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dignicate.zero1.R
 import com.dignicate.zero1.databinding.MainFragmentBinding
@@ -91,20 +92,54 @@ class MainFragment : Fragment() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             return when (viewType) {
-                ViewType.SECTION.value -> ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.main_row_section, parent, false))
-                ViewType.ITEM.value -> ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.main_row_item, parent, false))
+                ViewType.SECTION.value -> SectionViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.main_row_section, parent, false))
+                ViewType.ITEM.value -> ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.main_row_item, parent, false))
                 else -> throw IllegalStateException("Unexpected viewType: $viewType")
             }
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             Timber.d("position: $position")
+            when (holder) {
+                is SectionViewHolder -> {
+                    val section = data[position].section ?: return
+                    holder.configure(section.title)
+                }
+                is ItemViewHolder -> {
+                    val indexedItem = data[position].indexedItem ?: return
+                    holder.configure(indexedItem.second + 1, indexedItem.first)
+                }
+            }
         }
 
         override fun getItemCount(): Int {
             return data.size
         }
 
-        class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
+        abstract class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
+        class SectionViewHolder(view: View) : ViewHolder(view) {
+            private val titleLabel: TextView = view.findViewById(R.id.mainRowSectionTitle)
+
+            fun configure(title: String) {
+                titleLabel.text = title
+            }
+        }
+
+        class ItemViewHolder(view: View) : ViewHolder(view) {
+            private val numberLabel: TextView = view.findViewById(R.id.mainRowItemNumber)
+            private val titleLabel: TextView = view.findViewById(R.id.mainRowItemTitle)
+            private val background: View = view.findViewById(R.id.mainRowItemRoot)
+
+            fun configure(number: Int, item: MainViewModel.Item) {
+                numberLabel.text = "$number"
+                titleLabel.text = item.title
+                if (item.isAvailable) {
+                    background.setBackgroundResource(R.color.top_view_cell_background_enabled)
+                } else {
+                    background.setBackgroundResource(R.color.top_view_cell_background_disabled)
+                }
+            }
+        }
     }
 }
