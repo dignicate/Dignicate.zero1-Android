@@ -9,8 +9,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dignicate.zero1.R
 import com.dignicate.zero1.databinding.MainFragmentBinding
+import com.dignicate.zero1.rx.DisposeBag
+import com.dignicate.zero1.rx.disposedBy
+import timber.log.Timber
 
 class MainFragment : Fragment() {
+
+    private val disposeBag = DisposeBag()
 
     companion object {
         fun newInstance() = MainFragment()
@@ -20,7 +25,8 @@ class MainFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
 
-    private lateinit var adapter: Adapter
+    private val adapter: Adapter?
+        get() = binding.mainFragmentRecyclerView.adapter as? Adapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,31 +36,46 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        disposeBag.clear()
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
 
-        setupBinding()
         setupRecycleView()
-
+        setupBinding()
+        viewModel.onActivityCreated()
     }
 
     private fun setupBinding() {
-
+        viewModel.rowStates
+            .onErrorReturn { emptyList() }
+            .subscribe {
+                adapter?.setData(data = it)
+            }
+            .disposedBy(disposeBag)
     }
 
     private fun setupRecycleView() {
         binding.mainFragmentRecyclerView.apply {
             setHasFixedSize(true)
-            adapter = Adapter(this, "", viewModel)
+            adapter = Adapter()
+            layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         }
     }
 
-    class Adapter(private val recyclerView: RecyclerView,
-                  private val data: String,
-                  private val viewModel: MainViewModel
-    ) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+    class Adapter : RecyclerView.Adapter<Adapter.ViewHolder>() {
+
+        private var data: List<MainViewModel.RowState> = emptyList()
+
+        fun setData(data: List<MainViewModel.RowState>) {
+            this.data = data
+            notifyDataSetChanged()
+        }
 
         enum class ViewType(val value: Int) {
             SECTION(0),
@@ -77,11 +98,11 @@ class MainFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            println("position: $position")
+            Timber.d("position: $position")
         }
 
         override fun getItemCount(): Int {
-            return MainViewModel.ContentStructure.numberOfRows
+            return data.size
         }
 
         class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
