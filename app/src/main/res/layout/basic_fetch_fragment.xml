@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/basic_fetch"
@@ -14,7 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:text="TextView"
+        android:fontFamily="sans-serif-black"
+        android:text="企業情報"
+        android:textColor="@color/top_view_cell_text_enabled"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,15 +33,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
-            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="和名" />
+                android:text="和名"
+                android:textColor="@color/top_view_cell_text_enabled" />
 
             <TextView
                 android:id="@+id/basicFetchCompanyNameJPLabel"
@@ -50,15 +53,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
-            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="英名" />
+                android:text="英名"
+                android:textColor="@color/top_view_cell_text_enabled" />
 
             <TextView
                 android:id="@+id/basicFetchCompanyNameENLabel"
@@ -68,6 +72,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
