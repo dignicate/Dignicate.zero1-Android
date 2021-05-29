@@ -4,14 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.dignicate.zero1.R
 
-class BasicFetchActivity : AppCompatActivity() {
+class BasicFetchApiActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.basic_fetch_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, BasicFetchFragment.newInstance())
+                .replace(R.id.container, BasicFetchApiFragment.newInstance())
                 .commitNow()
         }
     }

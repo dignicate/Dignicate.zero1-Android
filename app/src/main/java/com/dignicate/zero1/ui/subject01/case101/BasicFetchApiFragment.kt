@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.dignicate.zero1.R
 
-class BasicFetchFragment : Fragment() {
+class BasicFetchApiFragment : Fragment() {
 
     companion object {
-        fun newInstance() = BasicFetchFragment()
+        fun newInstance() = BasicFetchApiFragment()
     }
 
-    private lateinit var viewModel: BasicFetchViewModel
+    private lateinit var viewModel: BasicFetchApiViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +25,7 @@ class BasicFetchFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BasicFetchViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(BasicFetchApiViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

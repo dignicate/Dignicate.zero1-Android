@@ -15,7 +15,7 @@ import com.dignicate.zero1.R
 import com.dignicate.zero1.databinding.MainFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.disposedBy
-import com.dignicate.zero1.ui.subject01.case101.BasicFetchActivity
+import com.dignicate.zero1.ui.subject01.case101.BasicFetchApiActivity
 import timber.log.Timber
 
 class MainFragment : Fragment() {
@@ -70,7 +70,7 @@ class MainFragment : Fragment() {
             adapter = Adapter {
                 when (it) {
                     MainViewModel.Item.BASIC_FETCH -> {
-                        startActivity(Intent(requireContext(), BasicFetchActivity::class.java))
+                        startActivity(Intent(requireContext(), BasicFetchApiActivity::class.java))
                     }
                     else -> {
 
