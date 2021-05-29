@@ -17,4 +17,8 @@ class BasicFetchApiUseCase(private val disposeBag: DisposeBag,
 //            .subscribe()
 //            .disposedBy(disposeBag)
     }
+
+    fun fetch(id: Int) {
+        fetchTrigger.onNext(id)
+    }
 }
