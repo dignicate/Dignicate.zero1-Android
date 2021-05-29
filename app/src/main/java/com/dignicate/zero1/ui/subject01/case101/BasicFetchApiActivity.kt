@@ -8,7 +8,7 @@ class BasicFetchApiActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.basic_fetch_activity)
+        setContentView(R.layout.basic_fetch_api_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, BasicFetchApiFragment.newInstance())
