@@ -3,32 +3,28 @@ package com.dignicate.zero1.domain.subject01.case101
 import com.dignicate.zero1.domain.subject01.CompanyInfo
 import com.dignicate.zero1.domain.subject01.SimpleCompanyInfoRepositoryInterface
 import com.dignicate.zero1.rx.DisposeBag
+import com.dignicate.zero1.rx.bindTo
 import com.dignicate.zero1.rx.disposedBy
-import io.reactivex.Observable
-import io.reactivex.Single
 import io.reactivex.subjects.PublishSubject
-import timber.log.Timber
+import io.reactivex.subjects.Subject
 
-class BasicFetchApiUseCase(private val disposeBag: DisposeBag,
+class BasicFetchApiUseCase(disposeBag: DisposeBag,
                            repository: SimpleCompanyInfoRepositoryInterface) {
 
     private val fetchTrigger = PublishSubject.create<CompanyInfo.Id>()
+
+    private val companyInfoSubject = PublishSubject.create<CompanyInfo>()
+
+    val companyInfo: Subject<CompanyInfo>
+        get() = companyInfoSubject
 
     init {
         fetchTrigger
             .flatMapSingle {
                 repository.fetch(it)
             }
-            // TODO: Implement bind() extension.
-            .subscribe()
+            .bindTo(companyInfoSubject)
             .disposedBy(disposeBag)
-
-//        fetchTrigger
-//            .flatMap {
-//                repository.fetch(it)
-//            }
-//            .subscribe()
-//            .disposedBy(disposeBag)
     }
 
     fun fetch(id: Int) {
