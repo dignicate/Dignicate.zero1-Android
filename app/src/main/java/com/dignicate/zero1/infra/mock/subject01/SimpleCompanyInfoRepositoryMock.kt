@@ -13,7 +13,11 @@ class SimpleCompanyInfoRepositoryMock : SimpleCompanyInfoRepositoryInterface {
                 callback.onSuccess(
                     CompanyInfo(
                         nameJP = "ディグニケート合同会社",
-                        nameEN = "Dignicate, LLC"
+                        nameEN = "Dignicate, LLC",
+                        address = "東京都新宿区西新宿３−１−５新宿嘉泉ビル８F",
+                        foundationDate = "",
+                        capital = 0,
+                        numberOfEmployees = 0
                     )
                 )
             }
