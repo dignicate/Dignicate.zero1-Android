@@ -37,8 +37,10 @@ class FetchWithDataStateViewModel : ViewModel() {
     val visibilityOfProgress: Observable<Int>
         get() = useCase.isInProgress
             .map {
-                if (it) View.GONE else View.VISIBLE
+                if (it) View.VISIBLE else View.GONE
             }
+            .distinctUntilChanged()
+            .startWith(View.GONE)
 
     override fun onCleared() {
         super.onCleared()

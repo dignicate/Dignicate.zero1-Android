@@ -115,7 +115,7 @@ class MainFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            Timber.d("position: $position")
+            Timber.v("position: $position")
             when (holder) {
                 is SectionViewHolder -> {
                     val section = data[position].section ?: return

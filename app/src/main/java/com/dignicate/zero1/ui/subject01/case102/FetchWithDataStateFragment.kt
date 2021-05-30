@@ -45,7 +45,6 @@ class FetchWithDataStateFragment : Fragment() {
             fetchWithDataStateButton.setOnClickListener {
                 viewModel.didTapFetchButton(1234)
             }
-            fetchWithDataStateProgress.visibility = View.GONE
         }
     }
 

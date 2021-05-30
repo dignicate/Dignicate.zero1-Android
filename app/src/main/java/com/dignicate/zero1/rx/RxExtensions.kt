@@ -7,6 +7,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 typealias DisposeBag = CompositeDisposable
@@ -33,7 +36,13 @@ fun Observable<String>.bindTo(textView: TextView): Disposable {
 fun Observable<Int>.bindVisibilityTo(view: View): Disposable {
     return subscribeOn(AndroidSchedulers.mainThread())
         .subscribe(
-            onNext@ { it?.let { view.visibility = it } },
+            onNext@ {
+                it?.let {
+                    GlobalScope.launch(Dispatchers.Main) {
+                        view.visibility = it
+                    }
+                }
+            },
             onError@ { Timber.e(it) }
         )
 }
