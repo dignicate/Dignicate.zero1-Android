@@ -68,15 +68,29 @@ class MainViewModel : ViewModel() {
         BASIC(0, "Basic Data Interaction", listOf(
             Item.BASIC_FETCH,
             Item.FETCH_WITH_DATA_STATE,
-            Item.FETCH_DATA_AND_SAVE_CACHE
+            Item.FETCH_DATA_AND_SAVE_CACHE,
+            Item.POST_AND_REFRESH
         )),
-        RECYCLER_VIEW(1, "Recycler View", emptyList()),
-        USER_INPUT(2, "User Input", emptyList());
+        RECYCLER_VIEW(1, "Recycler View", listOf(
+            Item.LIST_AND_DETAIL,
+            Item.PAGINATION
+        )),
+        USER_INPUT(2, "User Input", listOf(
+            Item.SIMPLE_VALIDATION,
+            Item.VALIDATE_AND_AUTO_CORRECT,
+            Item.STORE_INPUTS_OVER_SCREEN
+        ));
     }
 
     enum class Item(val title: String, val isAvailable: Boolean) {
         BASIC_FETCH("Basic fetch over HTTP", true),
-        FETCH_WITH_DATA_STATE("Fetch with data state", false),
-        FETCH_DATA_AND_SAVE_CACHE("Save fetched data into local device", false);
+        FETCH_WITH_DATA_STATE("Fetch with data state", true),
+        FETCH_DATA_AND_SAVE_CACHE("Save fetched data into local device", false),
+        POST_AND_REFRESH("Post data and refresh view", false),
+        LIST_AND_DETAIL("List and detail", false),
+        PAGINATION("Pagination", false),
+        SIMPLE_VALIDATION("Simple validation", false),
+        VALIDATE_AND_AUTO_CORRECT("Validate and auto-correct", false),
+        STORE_INPUTS_OVER_SCREEN("Store inputs over screens", false);
     }
 }
