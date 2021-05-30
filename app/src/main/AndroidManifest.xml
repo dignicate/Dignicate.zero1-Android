@@ -10,10 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dignicatezero1">
+        <activity android:name=".ui.subject01.case102.FetchWithDataStateActivity"></activity>
         <activity
             android:name=".ui.subject01.case101.BasicFetchApiActivity"
-            android:label="Basic Fetch API" >
-        </activity>
+            android:label="Basic Fetch API"></activity>
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

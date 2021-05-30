@@ -1,18 +1,19 @@
-package com.dignicate.zero1.ui.subject01.case101
+package com.dignicate.zero1.ui.subject01.case102
 
+import android.view.View
 import androidx.lifecycle.ViewModel
-import com.dignicate.zero1.domain.subject01.case101.BasicFetchApiUseCase
+import com.dignicate.zero1.domain.subject01.case102.FetchWithDataStateUseCase
 import com.dignicate.zero1.infra.mock.subject01.SimpleCompanyInfoRepositoryMock
 import com.dignicate.zero1.rx.DisposeBag
 import io.reactivex.Observable
 
-class BasicFetchApiViewModel : ViewModel() {
+class FetchWithDataStateViewModel : ViewModel() {
 
     private val disposeBag = DisposeBag()
 
-    private val useCase = BasicFetchApiUseCase(
+    private val useCase = FetchWithDataStateUseCase(
         disposeBag,
-        SimpleCompanyInfoRepositoryMock(2500)
+        SimpleCompanyInfoRepositoryMock(5000)
     )
 
     val companyNameJP: Observable<String>
@@ -32,6 +33,14 @@ class BasicFetchApiViewModel : ViewModel() {
 
     val numberOfEmployees: Observable<String>
         get() = useCase.companyInfo.map { "${it.numberOfEmployees}名" }
+
+    val visibilityOfProgress: Observable<Int>
+        get() = useCase.isInProgress
+            .map {
+                if (it) View.VISIBLE else View.GONE
+            }
+            .distinctUntilChanged()
+            .startWith(View.GONE)
 
     override fun onCleared() {
         super.onCleared()

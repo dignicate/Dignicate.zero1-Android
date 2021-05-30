@@ -16,6 +16,7 @@ import com.dignicate.zero1.databinding.MainFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.disposedBy
 import com.dignicate.zero1.ui.subject01.case101.BasicFetchApiActivity
+import com.dignicate.zero1.ui.subject01.case102.FetchWithDataStateActivity
 import timber.log.Timber
 
 class MainFragment : Fragment() {
@@ -72,6 +73,10 @@ class MainFragment : Fragment() {
                     MainViewModel.Item.BASIC_FETCH -> {
                         startActivity(Intent(requireContext(), BasicFetchApiActivity::class.java))
                     }
+                    MainViewModel.Item.FETCH_WITH_DATA_STATE -> {
+                        startActivity(Intent(requireContext(), FetchWithDataStateActivity::class.java))
+                    }
+                    // TODO: Must be exhaustive.
                     else -> {
 
                     }
@@ -110,7 +115,7 @@ class MainFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            Timber.d("position: $position")
+            Timber.v("position: $position")
             when (holder) {
                 is SectionViewHolder -> {
                     val section = data[position].section ?: return

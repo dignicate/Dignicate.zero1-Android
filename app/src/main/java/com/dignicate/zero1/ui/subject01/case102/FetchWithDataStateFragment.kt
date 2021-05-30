@@ -1,4 +1,4 @@
-package com.dignicate.zero1.ui.subject01.case101
+package com.dignicate.zero1.ui.subject01.case102
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,67 +6,75 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dignicate.zero1.databinding.BasicFetchApiFragmentBinding
+import com.dignicate.zero1.R
+import com.dignicate.zero1.databinding.FetchWithDataStateFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.bindTo
+import com.dignicate.zero1.rx.bindVisibilityTo
 import com.dignicate.zero1.rx.disposedBy
 
-class BasicFetchApiFragment : Fragment() {
+class FetchWithDataStateFragment : Fragment() {
 
     private val disposeBag = DisposeBag()
 
     companion object {
-        fun newInstance() = BasicFetchApiFragment()
+        fun newInstance() = FetchWithDataStateFragment()
     }
 
-    private lateinit var binding: BasicFetchApiFragmentBinding
+    private lateinit var binding: FetchWithDataStateFragmentBinding
 
-    private lateinit var viewModel: BasicFetchApiViewModel
+    private lateinit var viewModel: FetchWithDataStateViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = BasicFetchApiFragmentBinding.inflate(inflater)
+        binding = FetchWithDataStateFragmentBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BasicFetchApiViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(FetchWithDataStateViewModel::class.java)
         setupBinding()
         setupUi()
     }
 
     private fun setupUi() {
-        binding.basicFetchApiButton.setOnClickListener {
-            viewModel.didTapFetchButton(1234)
+        binding.apply {
+            fetchWithDataStateButton.setOnClickListener {
+                viewModel.didTapFetchButton(1234)
+            }
         }
     }
 
     private fun setupBinding() {
         viewModel.companyNameJP
-            .bindTo(binding.basicFetchCompanyNameJpLabel)
+            .bindTo(binding.fetchWithDataStateCompanyNameJpLabel)
             .disposedBy(disposeBag)
 
         viewModel.companyNameEN
-            .bindTo(binding.basicFetchCompanyNameEnLabel)
+            .bindTo(binding.fetchWithDataStateCompanyNameEnLabel)
             .disposedBy(disposeBag)
 
         viewModel.address
-            .bindTo(binding.basicFetchAddressLabel)
+            .bindTo(binding.fetchWithDataStateAddressLabel)
             .disposedBy(disposeBag)
 
         viewModel.foundationDate
-            .bindTo(binding.basicFetchFoundationDateLabel)
+            .bindTo(binding.fetchWithDataStateFoundationDateLabel)
             .disposedBy(disposeBag)
 
         viewModel.capital
-            .bindTo(binding.basicFetchCapitalLabel)
+            .bindTo(binding.fetchWithDataStateCapitalLabel)
             .disposedBy(disposeBag)
 
         viewModel.numberOfEmployees
-            .bindTo(binding.basicFetchNumberOfEmployeeLabel)
+            .bindTo(binding.fetchWithDataStateNumberOfEmployeeLabel)
+            .disposedBy(disposeBag)
+
+        viewModel.visibilityOfProgress
+            .bindVisibilityTo(binding.fetchWithDataStateProgress)
             .disposedBy(disposeBag)
     }
 
