@@ -1,5 +1,7 @@
 package com.dignicate.zero1.ui.main
 
+import android.content.Context
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dignicate.zero1.R
 import com.dignicate.zero1.databinding.MainFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.disposedBy
+import com.dignicate.zero1.ui.subject01.case101.BasicFetchApiActivity
 import timber.log.Timber
 
 class MainFragment : Fragment() {
@@ -45,8 +49,6 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
-
         setupRecycleView()
         setupBinding()
         viewModel.onActivityCreated()
@@ -68,8 +70,7 @@ class MainFragment : Fragment() {
             adapter = Adapter {
                 when (it) {
                     MainViewModel.Item.BASIC_FETCH -> {
-                        // TODO:
-                        // Start new activity.
+                        startActivity(Intent(requireContext(), BasicFetchApiActivity::class.java))
                     }
                     else -> {
 
@@ -103,7 +104,7 @@ class MainFragment : Fragment() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             return when (viewType) {
                 ViewType.SECTION.value -> SectionViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.main_row_section, parent, false))
-                ViewType.ITEM.value -> ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.main_row_item, parent, false))
+                ViewType.ITEM.value -> ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.main_row_item, parent, false), parent.context)
                 else -> throw IllegalStateException("Unexpected viewType: $viewType")
             }
         }
@@ -142,7 +143,7 @@ class MainFragment : Fragment() {
             }
         }
 
-        class ItemViewHolder(view: View) : ViewHolder(view) {
+        class ItemViewHolder(view: View, private val context: Context) : ViewHolder(view) {
             private val numberLabel: TextView = view.findViewById(R.id.mainRowItemNumber)
             private val titleLabel: TextView = view.findViewById(R.id.mainRowItemTitle)
             private val background: View = view.findViewById(R.id.mainRowItemRoot)
@@ -152,8 +153,10 @@ class MainFragment : Fragment() {
                 titleLabel.text = item.title
                 background.setOnClickListener { onClick(item) }
                 if (item.isAvailable) {
+                    titleLabel.setTextColor(ContextCompat.getColor(context, R.color.top_view_cell_text_enabled))
                     background.setBackgroundResource(R.color.top_view_cell_background_enabled)
                 } else {
+                    titleLabel.setTextColor(ContextCompat.getColor(context, R.color.top_view_cell_text_disabled))
                     background.setBackgroundResource(R.color.top_view_cell_background_disabled)
                 }
             }
