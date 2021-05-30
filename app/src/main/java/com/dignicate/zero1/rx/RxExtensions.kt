@@ -2,6 +2,7 @@ package com.dignicate.zero1.rx
 
 import android.widget.TextView
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
@@ -21,9 +22,9 @@ fun <T> Observable<T>.bindTo(subject: PublishSubject<T>): Disposable {
 }
 
 fun Observable<String>.bindTo(textView: TextView): Disposable {
-    // TODO: subscribe on main thread.
-    return subscribe(
-        onNext@ { it?.let { textView.text = it } },
-        onError@ { Timber.e(it) }
-    )
+    return subscribeOn(AndroidSchedulers.mainThread())
+        .subscribe(
+            onNext@ { it?.let { textView.text = it } },
+            onError@ { Timber.e(it) }
+        )
 }
