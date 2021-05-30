@@ -8,7 +8,7 @@
     android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/basicFetchHeaderLabel"
+        android:id="@+id/basic_fetch_header_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -29,7 +29,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/basicFetchHeaderLabel">
+        app:layout_constraintTop_toBottomOf="@+id/basic_fetch_header_label">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,7 +46,7 @@
                 android:textColor="@color/top_view_cell_text_enabled" />
 
             <TextView
-                android:id="@+id/basicFetchCompanyNameJPLabel"
+                android:id="@+id/basic_fetch_company_name_jp_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
@@ -69,7 +69,7 @@
                 android:textColor="@color/top_view_cell_text_enabled" />
 
             <TextView
-                android:id="@+id/basicFetchCompanyNameENLabel"
+                android:id="@+id/basic_fetch_company_name_en_Label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
@@ -93,7 +93,7 @@
                 android:textColor="@color/top_view_cell_text_enabled" />
 
             <TextView
-                android:id="@+id/basicFetchAddressLabel"
+                android:id="@+id/basic_fetch_address_label"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:ellipsize="end"
@@ -120,7 +120,7 @@
                 android:textColor="@color/top_view_cell_text_enabled" />
 
             <TextView
-                android:id="@+id/basicFetchFoundationDateLabel"
+                android:id="@+id/basic_fetch_foundation_date_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
@@ -144,7 +144,7 @@
                 android:textColor="@color/top_view_cell_text_enabled" />
 
             <TextView
-                android:id="@+id/basicFetchCapitalLabel"
+                android:id="@+id/basic_fetch_capital_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
@@ -167,7 +167,7 @@
                 android:textColor="@color/top_view_cell_text_enabled" />
 
             <TextView
-                android:id="@+id/basicFetchNumberOfEmployeeLabel"
+                android:id="@+id/basic_fetch_number_Of_employee_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
@@ -178,7 +178,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/basic_fetch_api_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"

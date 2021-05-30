@@ -10,7 +10,6 @@ import com.dignicate.zero1.databinding.BasicFetchApiFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.bindTo
 import com.dignicate.zero1.rx.disposedBy
-import io.reactivex.android.schedulers.AndroidSchedulers
 
 class BasicFetchApiFragment : Fragment() {
 
@@ -36,22 +35,22 @@ class BasicFetchApiFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(BasicFetchApiViewModel::class.java)
         setupBinding()
-        setupUiEvent()
+        setupUi()
     }
 
-    private fun setupUiEvent() {
-        binding.button.setOnClickListener {
+    private fun setupUi() {
+        binding.basicFetchApiButton.setOnClickListener {
             viewModel.didTapFetchButton(1234)
         }
     }
 
     private fun setupBinding() {
         viewModel.companyNameJP
-            .bindTo(binding.basicFetchCompanyNameJPLabel)
+            .bindTo(binding.basicFetchCompanyNameJpLabel)
             .disposedBy(disposeBag)
 
         viewModel.companyNameEN
-            .bindTo(binding.basicFetchCompanyNameENLabel)
+            .bindTo(binding.basicFetchCompanyNameEnLabel)
             .disposedBy(disposeBag)
 
         viewModel.address
