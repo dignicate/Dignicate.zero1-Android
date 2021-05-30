@@ -16,7 +16,7 @@
         android:fontFamily="sans-serif-black"
         android:text="企業情報"
         android:textColor="@color/top_view_cell_text_enabled"
-        android:textSize="16sp"
+        android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,13 +41,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-black"
                 android:text="和名"
+                android:textSize="17sp"
                 android:textColor="@color/top_view_cell_text_enabled" />
 
             <TextView
                 android:id="@+id/basicFetchCompanyNameJPLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/top_view_cell_text_enabled"
+                android:textAlignment="textStart"
                 android:layout_weight="3" />
         </LinearLayout>
 
@@ -61,13 +66,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-black"
                 android:text="英名"
+                android:textSize="17sp"
                 android:textColor="@color/top_view_cell_text_enabled" />
 
             <TextView
                 android:id="@+id/basicFetchCompanyNameENLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/top_view_cell_text_enabled"
+                android:textAlignment="textStart"
                 android:layout_weight="3" />
         </LinearLayout>
 
