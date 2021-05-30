@@ -14,7 +14,7 @@ fun Disposable.disposedBy(disposeBag: DisposeBag) {
     disposeBag.add(this)
 }
 
-fun <T> Observable<T>.bindTo(subject: PublishSubject<T>): Disposable {
+fun <T> Observable<out T>.bindTo(subject: PublishSubject<T>): Disposable {
     return subscribe(
         onNext@ { it?.let { subject.onNext(it) } },
         onError@ { Timber.e(it) }
