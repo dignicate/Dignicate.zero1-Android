@@ -18,7 +18,7 @@ class SimpleCompanyInfoRepositoryMock : SimpleCompanyInfoRepositoryInterface {
                         address = "東京都新宿区西新宿３−１−５新宿嘉泉ビル８F",
                         foundationDate = BasicFetchMockDomain.YMD(2019, 5, 20),
                         capital = BasicFetchMockDomain.Currency.JPY(90000000000000),
-                        numberOfEmployees = 0
+                        numberOfEmployees = 29018
                     )
                 )
             }

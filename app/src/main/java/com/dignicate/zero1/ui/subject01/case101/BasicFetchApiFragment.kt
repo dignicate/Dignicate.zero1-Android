@@ -57,6 +57,18 @@ class BasicFetchApiFragment : Fragment() {
         viewModel.address
             .bindTo(binding.basicFetchAddressLabel)
             .disposedBy(disposeBag)
+
+        viewModel.foundationDate
+            .bindTo(binding.basicFetchFoundationDateLabel)
+            .disposedBy(disposeBag)
+
+        viewModel.capital
+            .bindTo(binding.basicFetchCapitalLabel)
+            .disposedBy(disposeBag)
+
+        viewModel.numberOfEmployees
+            .bindTo(binding.basicFetchNumberOfEmployeeLabel)
+            .disposedBy(disposeBag)
     }
 
     override fun onDestroy() {
