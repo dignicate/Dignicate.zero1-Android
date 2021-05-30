@@ -5,6 +5,7 @@ import com.dignicate.zero1.domain.subject01.SimpleCompanyInfoRepositoryInterface
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.bindTo
 import com.dignicate.zero1.rx.disposedBy
+import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
 
@@ -15,7 +16,7 @@ class BasicFetchApiUseCase(disposeBag: DisposeBag,
 
     private val companyInfoSubject = PublishSubject.create<CompanyInfo>()
 
-    val companyInfo: Subject<CompanyInfo>
+    val companyInfo: Observable<CompanyInfo>
         get() = companyInfoSubject
 
     init {
