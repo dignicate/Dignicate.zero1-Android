@@ -12,7 +12,7 @@ class BasicFetchApiViewModel : ViewModel() {
 
     private val useCase = BasicFetchApiUseCase(
         disposeBag,
-        SimpleCompanyInfoRepositoryMock()
+        SimpleCompanyInfoRepositoryMock(2500)
     )
 
     val companyNameJP: Observable<String>

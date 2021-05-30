@@ -62,4 +62,9 @@ class FetchWithDataStateUseCase(disposeBag: DisposeBag,
                     }
                 }
                 .distinctUntilChanged()
+
+    fun fetch(id: Int) {
+        companyInfoDataStateSubject.onNext(DataState.InProgress)
+        fetchTrigger.onNext(CompanyInfo.Id(id))
+    }
 }
