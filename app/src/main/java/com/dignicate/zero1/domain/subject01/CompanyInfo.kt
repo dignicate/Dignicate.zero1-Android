@@ -4,8 +4,8 @@ data class CompanyInfo(
     val nameJP: String,
     val nameEN: String,
     val address: String,
-    val foundationDate: String,
-    val capital: Int,
+    val foundationDate: BasicFetchMockDomain.YMD,
+    val capital: BasicFetchMockDomain.Currency,
     val numberOfEmployees: Int
 ) {
     class Id(val value: Int)
