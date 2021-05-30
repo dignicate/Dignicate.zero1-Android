@@ -10,6 +10,7 @@ import com.dignicate.zero1.databinding.BasicFetchApiFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.bindTo
 import com.dignicate.zero1.rx.disposedBy
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 class BasicFetchApiFragment : Fragment() {
 
@@ -51,6 +52,10 @@ class BasicFetchApiFragment : Fragment() {
 
         viewModel.companyNameEN
             .bindTo(binding.basicFetchCompanyNameENLabel)
+            .disposedBy(disposeBag)
+
+        viewModel.address
+            .bindTo(binding.basicFetchAddressLabel)
             .disposedBy(disposeBag)
     }
 

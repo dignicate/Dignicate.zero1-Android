@@ -21,6 +21,9 @@ class BasicFetchApiViewModel : ViewModel() {
     val companyNameEN: Observable<String>
         get() = useCase.companyInfo.map { it.nameEN }
 
+    val address: Observable<String>
+        get() = useCase.companyInfo.map { it.address }
+
     override fun onCleared() {
         super.onCleared()
         disposeBag.clear()
