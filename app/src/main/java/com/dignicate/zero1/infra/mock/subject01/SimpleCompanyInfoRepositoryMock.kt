@@ -2,11 +2,12 @@ package com.dignicate.zero1.infra.mock.subject01
 
 import com.dignicate.zero1.domain.subject01.BasicFetchMockDomain
 import com.dignicate.zero1.domain.subject01.CompanyInfo
-import com.dignicate.zero1.domain.subject01.SimpleCompanyInfoRepositoryInterface
+import com.dignicate.zero1.domain.subject01.case101.SimpleCompanyInfoRepositoryInterface
 import io.reactivex.Single
 import kotlin.concurrent.thread
 
-class SimpleCompanyInfoRepositoryMock(private val delayMs: Long) : SimpleCompanyInfoRepositoryInterface {
+class SimpleCompanyInfoRepositoryMock(private val delayMs: Long) :
+    SimpleCompanyInfoRepositoryInterface {
     override fun fetch(id: CompanyInfo.Id): Single<CompanyInfo> =
         Single.create { callback ->
             thread {

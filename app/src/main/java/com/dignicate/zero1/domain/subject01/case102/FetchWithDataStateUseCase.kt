@@ -1,7 +1,7 @@
 package com.dignicate.zero1.domain.subject01.case102
 
 import com.dignicate.zero1.domain.subject01.CompanyInfo
-import com.dignicate.zero1.domain.subject01.SimpleCompanyInfoRepositoryInterface
+import com.dignicate.zero1.domain.subject01.case101.SimpleCompanyInfoRepositoryInterface
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.bindTo
 import com.dignicate.zero1.rx.disposedBy
@@ -9,7 +9,8 @@ import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 
 class FetchWithDataStateUseCase(disposeBag: DisposeBag,
-                                repository: SimpleCompanyInfoRepositoryInterface) {
+                                repository: SimpleCompanyInfoRepositoryInterface
+) {
 
     sealed class DataState {
         class Success(val data: CompanyInfo) : DataState()
