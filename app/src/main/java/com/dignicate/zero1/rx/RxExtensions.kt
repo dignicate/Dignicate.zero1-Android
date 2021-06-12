@@ -28,16 +28,6 @@ fun <T> Observable<out T>.bindTo(subject: Subject<T>): Disposable {
     )
 }
 
-fun <T, R> Observable<T>.compactMap(mapper: Function<in T, out R?>): Observable<R> {
-    val source = ObservableMap<T, R>(this, mapper)
-    val result = RxJavaPlugins.onAssembly(source)
-    return if (result === source) {
-        Observable.empty()
-    } else {
-        result
-    }
-}
-
 fun Observable<String>.bindTo(textView: TextView): Disposable {
     return subscribeOn(AndroidSchedulers.mainThread())
         .subscribe(

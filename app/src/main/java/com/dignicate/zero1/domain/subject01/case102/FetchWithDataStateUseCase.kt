@@ -34,13 +34,12 @@ class FetchWithDataStateUseCase(disposeBag: DisposeBag,
     val companyInfo: Observable<CompanyInfo>
         get() =
             companyInfoDataStateSubject
-                .filter {
+                .switchMap {
                     when (it) {
-                        is DataState.Success -> true
-                        is DataState.InProgress, DataState.Failure -> false
+                        is DataState.Success -> Observable.just(it.data)
+                        is DataState.InProgress, DataState.Failure -> Observable.empty()
                     }
                 }
-                .map { (it as DataState.Success).data }
 
     val isInProgress: Observable<Boolean>
         get() =
