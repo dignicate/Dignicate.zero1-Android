@@ -6,7 +6,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.subjects.PublishSubject
+import io.reactivex.subjects.Subject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -18,7 +18,7 @@ fun Disposable.disposedBy(disposeBag: DisposeBag) {
     disposeBag.add(this)
 }
 
-fun <T> Observable<out T>.bindTo(subject: PublishSubject<T>): Disposable {
+fun <T> Observable<out T>.bindTo(subject: Subject<T>): Disposable {
     return subscribe(
         onNext@ { it?.let { subject.onNext(it) } },
         onError@ { Timber.e(it) }
