@@ -2,11 +2,13 @@ package com.dignicate.zero1.domain.subject01.case103
 
 import com.dignicate.zero1.domain.subject01.CompanyInfo
 import com.dignicate.zero1.rx.DisposeBag
+import com.dignicate.zero1.rx.RxExtensions
 import com.dignicate.zero1.rx.RxExtensions.bindTo
 import com.dignicate.zero1.rx.RxExtensions.disposedBy
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 class FetchAndSaveDataUseCase(private val disposeBag: DisposeBag,
@@ -26,7 +28,7 @@ class FetchAndSaveDataUseCase(private val disposeBag: DisposeBag,
 
     private val saveCompleteRelay = PublishSubject.create<Unit>()
 
-    private val lastUpdatedRelay = PublishSubject.create<String>()
+    private val lastUpdatedRelay = PublishSubject.create<RxExtensions.Optional<Date>>()
 
     val processState: Observable<ProcessState>
         get() = processStateRelay
@@ -34,7 +36,7 @@ class FetchAndSaveDataUseCase(private val disposeBag: DisposeBag,
     val saveComplete: Observable<Unit>
         get() = saveCompleteRelay
 
-    val lastUpdated: Observable<String>
+    val lastUpdated: Observable<RxExtensions.Optional<Date>>
         get() = lastUpdatedRelay
 
     sealed class DataState {
@@ -49,17 +51,19 @@ class FetchAndSaveDataUseCase(private val disposeBag: DisposeBag,
         object FetchedLocally : ProcessState()
         object Saving : ProcessState()
         object Saved : ProcessState()
+        object Clearing : ProcessState()
+        object Cleared : ProcessState()
 
         val isFetchAvailable: Boolean
             get() = when(this) {
-                is NoProcess, FetchedLocally, Saved -> true
-                is Fetching, Saving -> false
+                is NoProcess, FetchedLocally, Saved, Cleared -> true
+                is Fetching, Saving, Clearing -> false
             }
 
         val isClearAvailable: Boolean
             get() = when(this) {
                 is NoProcess, FetchedLocally, Saved -> true
-                is Fetching, Saving -> false
+                is Fetching, Saving, Clearing, Cleared -> false
             }
     }
 
@@ -129,6 +133,29 @@ class FetchAndSaveDataUseCase(private val disposeBag: DisposeBag,
             .map { ProcessState.Saved }
             .bindTo(processStateRelay)
             .disposedBy(disposeBag)
-    }
 
+        fetchLastUpdatedTrigger
+            .flatMapSingle {
+                repository.fetchLastUpdated()
+            }
+            .bindTo(lastUpdatedRelay)
+            .disposedBy(disposeBag)
+
+        clearLocalDataTrigger
+            .flatMapSingle {
+                repository.clearLocalData()
+            }
+            .onErrorResumeNext(Observable.empty())
+            .subscribe onNext@ {
+                dataStateRelay.onNext(DataState.NoData)
+                lastUpdatedRelay.onNext(RxExtensions.Optional.None())
+                processStateRelay.onNext(ProcessState.Cleared)
+            }
+            .disposedBy(disposeBag)
+
+        clearLocalDataTrigger
+            .map { ProcessState.Clearing }
+            .bindTo(processStateRelay)
+            .disposedBy(disposeBag)
+    }
 }
