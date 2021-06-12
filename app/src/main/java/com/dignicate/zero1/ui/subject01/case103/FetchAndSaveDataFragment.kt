@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dignicate.zero1.databinding.BasicFetchApiFragmentBinding
+import com.dignicate.zero1.databinding.FetchAndSaveDataFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
+import com.dignicate.zero1.rx.RxExtensions.bindTextTo
 import com.dignicate.zero1.rx.RxExtensions.bindTo
 import com.dignicate.zero1.rx.RxExtensions.disposedBy
 
@@ -19,7 +21,7 @@ class FetchAndSaveDataFragment : Fragment() {
         fun newInstance() = FetchAndSaveDataFragment()
     }
 
-    private lateinit var binding: BasicFetchApiFragmentBinding
+    private lateinit var binding: FetchAndSaveDataFragmentBinding
 
     private lateinit var viewModel: FetchAndSaveDataViewModel
 
@@ -27,7 +29,7 @@ class FetchAndSaveDataFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = BasicFetchApiFragmentBinding.inflate(inflater)
+        binding = FetchAndSaveDataFragmentBinding.inflate(inflater)
         return binding.root
     }
 
@@ -39,18 +41,22 @@ class FetchAndSaveDataFragment : Fragment() {
     }
 
     private fun setupUi() {
-        binding.basicFetchApiButton.setOnClickListener {
+        binding.fetchAndSaveDataFetchButton.setOnClickListener {
             viewModel.didTapFetchButton(1234)
         }
     }
 
     private fun setupBinding() {
         viewModel.companyNameJP
-            .bindTo(binding.basicFetchCompanyNameJpLabel)
+            .bindTextTo(binding.fetchAndSaveDataNameJpLabel)
             .disposedBy(disposeBag)
 
         viewModel.companyNameEN
-            .bindTo(binding.basicFetchCompanyNameEnLabel)
+            .bindTextTo(binding.fetchAndSaveDataNameEnLabel)
+            .disposedBy(disposeBag)
+
+        viewModel.lastUpdated
+            .bindTextTo(binding.fetchAndSaveDataLastUpdatedLabel)
             .disposedBy(disposeBag)
     }
 

@@ -38,7 +38,7 @@ object RxExtensions {
         )
     }
 
-    fun Observable<String>.bindTo(textView: TextView): Disposable {
+    fun Observable<String>.bindTextTo(textView: TextView): Disposable {
         return subscribeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 onNext@ { it?.let { textView.text = it } },
