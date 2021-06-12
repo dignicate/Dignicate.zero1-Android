@@ -1,17 +1,16 @@
 package com.dignicate.zero1.ui.subject01.case103
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dignicate.zero1.databinding.BasicFetchApiFragmentBinding
 import com.dignicate.zero1.databinding.FetchAndSaveDataFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.RxExtensions.bindEnabledTo
 import com.dignicate.zero1.rx.RxExtensions.bindTextTo
-import com.dignicate.zero1.rx.RxExtensions.bindTo
 import com.dignicate.zero1.rx.RxExtensions.disposedBy
 
 class FetchAndSaveDataFragment : Fragment() {
@@ -37,6 +36,7 @@ class FetchAndSaveDataFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(FetchAndSaveDataViewModel::class.java)
+        viewModel.onActivityCreated(requireContext().getSharedPreferences("Data", Context.MODE_PRIVATE))
         setupBinding()
         setupUi()
     }
@@ -62,6 +62,18 @@ class FetchAndSaveDataFragment : Fragment() {
 
         viewModel.shouldEnableClearButton
             .bindEnabledTo(binding.fetchAndSaveDataClearButton)
+            .disposedBy(disposeBag)
+
+        viewModel.shouldEnableFetchButton
+            .bindEnabledTo(binding.fetchAndSaveDataFetchButton)
+            .disposedBy(disposeBag)
+
+        viewModel.dataState
+            .bindTextTo(binding.fetchAndSaveDataDataState)
+            .disposedBy(disposeBag)
+
+        viewModel.processState
+            .bindTextTo(binding.fetchAndSaveDataProcessState)
             .disposedBy(disposeBag)
     }
 

@@ -45,8 +45,8 @@ class CompanyInfoFetchAndSaveRepositoryMock(private val delayMs: Long,
 
     override fun fetchLastUpdated(): Single<RxExtensions.Optional<Date>> =
         Single.create { callback ->
-            val milliSec = sharedPreferences.getString(UserDefaultKey.companyInfoLastUpdate, null)?.toLongOrNull()
-            if (milliSec != null) {
+            val milliSec = sharedPreferences.getLong(UserDefaultKey.companyInfoLastUpdate, -1)
+            if (milliSec > 0) {
                 callback.onSuccess(RxExtensions.Optional.Some(Date(milliSec)))
             } else {
                 callback.onSuccess(RxExtensions.Optional.None())

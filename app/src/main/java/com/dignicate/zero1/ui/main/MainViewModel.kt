@@ -68,7 +68,7 @@ class MainViewModel : ViewModel() {
         BASIC(0, "Basic Data Interaction", listOf(
             Item.BASIC_FETCH,
             Item.FETCH_WITH_DATA_STATE,
-            Item.FETCH_DATA_AND_SAVE_CACHE,
+            Item.FETCH_AND_SAVE_DATA,
             Item.POST_AND_REFRESH
         )),
         RECYCLER_VIEW(1, "Recycler View", listOf(
@@ -85,7 +85,7 @@ class MainViewModel : ViewModel() {
     enum class Item(val title: String, val isAvailable: Boolean) {
         BASIC_FETCH("Basic fetch over HTTP", true),
         FETCH_WITH_DATA_STATE("Fetch with data state", true),
-        FETCH_DATA_AND_SAVE_CACHE("Save fetched data into local device", false),
+        FETCH_AND_SAVE_DATA("Save fetched data into local device", true),
         POST_AND_REFRESH("Post data and refresh view", false),
         LIST_AND_DETAIL("List and detail", false),
         PAGINATION("Pagination", false),

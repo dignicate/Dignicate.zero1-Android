@@ -17,6 +17,7 @@ import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.RxExtensions.disposedBy
 import com.dignicate.zero1.ui.subject01.case101.BasicFetchApiActivity
 import com.dignicate.zero1.ui.subject01.case102.FetchWithDataStateActivity
+import com.dignicate.zero1.ui.subject01.case103.FetchAndSaveDataActivity
 import timber.log.Timber
 
 class MainFragment : Fragment() {
@@ -75,6 +76,9 @@ class MainFragment : Fragment() {
                     }
                     MainViewModel.Item.FETCH_WITH_DATA_STATE -> {
                         startActivity(Intent(requireContext(), FetchWithDataStateActivity::class.java))
+                    }
+                    MainViewModel.Item.FETCH_AND_SAVE_DATA -> {
+                        startActivity(Intent(requireContext(), FetchAndSaveDataActivity::class.java))
                     }
                     // TODO: Must be exhaustive.
                     else -> {

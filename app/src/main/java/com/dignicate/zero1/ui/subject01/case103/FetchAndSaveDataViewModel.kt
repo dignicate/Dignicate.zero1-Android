@@ -9,14 +9,15 @@ import com.dignicate.zero1.rx.DisposeBag
 import io.reactivex.Observable
 import java.util.*
 
-class FetchAndSaveDataViewModel(sharedPreferences: SharedPreferences) : ViewModel() {
+class FetchAndSaveDataViewModel : ViewModel() {
 
     private val disposeBag = DisposeBag()
 
-    private val useCase = FetchAndSaveDataUseCase(
-        disposeBag,
-        CompanyInfoFetchAndSaveRepositoryMock(2000, sharedPreferences)
-    )
+    private lateinit var useCase: FetchAndSaveDataUseCase
+
+    fun onActivityCreated(sharedPreferences: SharedPreferences) {
+        useCase = FetchAndSaveDataUseCase(disposeBag, CompanyInfoFetchAndSaveRepositoryMock(2500, sharedPreferences))
+    }
 
     override fun onCleared() {
         super.onCleared()
