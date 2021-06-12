@@ -32,10 +32,11 @@ object RxExtensions {
     }
 
     fun <T> Observable<out T>.bindTo(subject: Subject<T>): Disposable {
-        return subscribe(
-            onNext@ { it?.let { subject.onNext(it) } },
-            onError@ { Timber.e(it) }
-        )
+        return subscribeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                onNext@ { it?.let { subject.onNext(it) } },
+                onError@ { Timber.e(it) }
+            )
     }
 
     fun Observable<String>.bindTextTo(textView: TextView): Disposable {
@@ -50,13 +51,19 @@ object RxExtensions {
         return subscribeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 onNext@ {
-                    it?.let {
-                        GlobalScope.launch(Dispatchers.Main) {
-                            view.visibility = it
-                        }
+                    GlobalScope.launch(Dispatchers.Main) {
+                        view.visibility = it
                     }
                 },
                 onError@ { Timber.e(it) }
+            )
+    }
+
+    fun Observable<Boolean>.bindEnabledTo(view: View): Disposable {
+        return subscribeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                onNext@ { view.isSaveEnabled = it },
+                onError@ {}
             )
     }
 }

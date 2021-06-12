@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.dignicate.zero1.databinding.BasicFetchApiFragmentBinding
 import com.dignicate.zero1.databinding.FetchAndSaveDataFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
+import com.dignicate.zero1.rx.RxExtensions.bindEnabledTo
 import com.dignicate.zero1.rx.RxExtensions.bindTextTo
 import com.dignicate.zero1.rx.RxExtensions.bindTo
 import com.dignicate.zero1.rx.RxExtensions.disposedBy
@@ -57,6 +58,10 @@ class FetchAndSaveDataFragment : Fragment() {
 
         viewModel.lastUpdated
             .bindTextTo(binding.fetchAndSaveDataLastUpdatedLabel)
+            .disposedBy(disposeBag)
+
+        viewModel.shouldEnableClearButton
+            .bindEnabledTo(binding.fetchAndSaveDataClearButton)
             .disposedBy(disposeBag)
     }
 
