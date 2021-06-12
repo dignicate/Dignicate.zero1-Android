@@ -53,9 +53,15 @@ class CompanyInfoFetchAndSaveRepositoryMock(private val delayMs: Long,
             }
         }
 
-    override fun saveToLocal(companyInfo: CompanyInfo): Single<Unit> {
-        TODO("Not yet implemented")
-    }
+    override fun saveToLocal(companyInfo: CompanyInfo): Single<Unit> =
+        Single.create { callback ->
+            val milliSec = Date().time
+            sharedPreferences
+                .edit()
+                .putLong(UserDefaultKey.companyInfoLastUpdate, milliSec)
+                .apply()
+            callback.onSuccess(Unit)
+        }
 
     override fun clearLocalData(): Single<Unit> =
         Single.create { callback ->
