@@ -168,4 +168,12 @@ class FetchAndSaveDataUseCase(private val disposeBag: DisposeBag,
             .bindTo(processStateRelay)
             .disposedBy(disposeBag)
     }
+
+    fun fetch(id: CompanyInfo.Id) {
+        fetchTrigger.onNext(id)
+    }
+
+    fun clear() {
+        clearLocalDataTrigger.onNext(Unit)
+    }
 }
