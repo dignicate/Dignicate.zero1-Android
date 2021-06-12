@@ -6,8 +6,7 @@ import com.dignicate.zero1.domain.subject01.case101.SimpleCompanyInfoRepositoryI
 import io.reactivex.Single
 import kotlin.concurrent.thread
 
-class SimpleCompanyInfoRepositoryMock(private val delayMs: Long) :
-    SimpleCompanyInfoRepositoryInterface {
+class SimpleCompanyInfoRepositoryMock(private val delayMs: Long) : SimpleCompanyInfoRepositoryInterface {
     override fun fetch(id: CompanyInfo.Id): Single<CompanyInfo> =
         Single.create { callback ->
             thread {
