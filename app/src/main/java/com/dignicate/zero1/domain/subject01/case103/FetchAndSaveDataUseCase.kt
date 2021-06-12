@@ -30,6 +30,9 @@ class FetchAndSaveDataUseCase(private val disposeBag: DisposeBag,
 
     private val lastUpdatedRelay = PublishSubject.create<RxExtensions.Optional<Date>>()
 
+    val dataState: Observable<DataState>
+        get() = dataStateRelay
+
     val processState: Observable<ProcessState>
         get() = processStateRelay
 
@@ -43,6 +46,13 @@ class FetchAndSaveDataUseCase(private val disposeBag: DisposeBag,
         class Remote(val data: CompanyInfo) : DataState()
         class Local(val data: CompanyInfo) : DataState()
         object NoData : DataState()
+
+        val companyInfo: CompanyInfo?
+            get() = when (this) {
+                is Remote -> data
+                is Local -> data
+                is NoData -> null
+            }
     }
 
     sealed class ProcessState {

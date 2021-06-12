@@ -17,8 +17,14 @@ typealias DisposeBag = CompositeDisposable
 
 object RxExtensions {
     sealed class Optional<T> {
-        class Some<T>(private val data: T) : Optional<T>()
+        class Some<T>(val data: T) : Optional<T>()
         class None<T> : Optional<T>()
+
+        val value: T?
+            get() = when (this) {
+                is Some -> data
+                is None -> null
+            }
     }
 
     fun Disposable.disposedBy(disposeBag: DisposeBag) {
