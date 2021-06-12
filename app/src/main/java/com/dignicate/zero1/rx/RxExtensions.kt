@@ -6,6 +6,9 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import io.reactivex.functions.Function
+import io.reactivex.internal.operators.observable.ObservableMap
+import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.subjects.Subject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -23,6 +26,16 @@ fun <T> Observable<out T>.bindTo(subject: Subject<T>): Disposable {
         onNext@ { it?.let { subject.onNext(it) } },
         onError@ { Timber.e(it) }
     )
+}
+
+fun <T, R> Observable<T>.compactMap(mapper: Function<in T, out R?>): Observable<R> {
+    val source = ObservableMap<T, R>(this, mapper)
+    val result = RxJavaPlugins.onAssembly(source)
+    return if (result === source) {
+        Observable.empty()
+    } else {
+        result
+    }
 }
 
 fun Observable<String>.bindTo(textView: TextView): Disposable {

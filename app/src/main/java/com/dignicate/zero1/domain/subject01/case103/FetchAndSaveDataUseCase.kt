@@ -3,6 +3,7 @@ package com.dignicate.zero1.domain.subject01.case103
 import com.dignicate.zero1.domain.subject01.CompanyInfo
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.bindTo
+import com.dignicate.zero1.rx.compactMap
 import com.dignicate.zero1.rx.disposedBy
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
@@ -77,7 +78,15 @@ class FetchAndSaveDataUseCase(private val disposeBag: DisposeBag,
             .bindTo(processStateRelay)
             .disposedBy(disposeBag)
 
+        dataStateRelay
+            .compactMap {
+                when(it) {
+                    is DataState.Remote -> it.data
+                    is DataState.Local, DataState.NoData -> null
+                }
+            }
+            .bindTo(saveTrigger)
+            .disposedBy(disposeBag)
     }
-
 
 }
