@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import com.dignicate.zero1.R
 import com.dignicate.zero1.databinding.FetchWithDataStateFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
-import com.dignicate.zero1.rx.bindTo
-import com.dignicate.zero1.rx.bindVisibilityTo
-import com.dignicate.zero1.rx.disposedBy
+import com.dignicate.zero1.rx.RxExtensions.bindTo
+import com.dignicate.zero1.rx.RxExtensions.bindVisibilityTo
+import com.dignicate.zero1.rx.RxExtensions.disposedBy
 
 class FetchWithDataStateFragment : Fragment() {
 

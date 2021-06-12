@@ -2,8 +2,8 @@ package com.dignicate.zero1.domain.subject01.case103
 
 import com.dignicate.zero1.domain.subject01.CompanyInfo
 import com.dignicate.zero1.rx.DisposeBag
-import com.dignicate.zero1.rx.bindTo
-import com.dignicate.zero1.rx.disposedBy
+import com.dignicate.zero1.rx.RxExtensions.bindTo
+import com.dignicate.zero1.rx.RxExtensions.disposedBy
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject

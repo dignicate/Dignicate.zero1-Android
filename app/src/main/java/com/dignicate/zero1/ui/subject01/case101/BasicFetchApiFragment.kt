@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.dignicate.zero1.databinding.BasicFetchApiFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
-import com.dignicate.zero1.rx.bindTo
-import com.dignicate.zero1.rx.disposedBy
+import com.dignicate.zero1.rx.RxExtensions.bindTo
+import com.dignicate.zero1.rx.RxExtensions.disposedBy
 
 class BasicFetchApiFragment : Fragment() {
 
