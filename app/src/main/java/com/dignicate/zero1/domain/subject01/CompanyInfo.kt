@@ -1,6 +1,7 @@
 package com.dignicate.zero1.domain.subject01
 
 data class CompanyInfo(
+    val id: CompanyInfo.Id,
     val nameJP: String,
     val nameEN: String,
     val address: String,
