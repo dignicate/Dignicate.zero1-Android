@@ -43,9 +43,15 @@ class CompanyInfoFetchAndSaveRepositoryMock(private val delayMs: Long,
             }
         }
 
-    override fun fetchLastUpdated(): Single<RxExtensions.Optional<Date>> {
-        TODO("Not yet implemented")
-    }
+    override fun fetchLastUpdated(): Single<RxExtensions.Optional<Date>> =
+        Single.create { callback ->
+            val milliSec = sharedPreferences.getString(UserDefaultKey.companyInfoLastUpdate, null)?.toLongOrNull()
+            if (milliSec != null) {
+                callback.onSuccess(RxExtensions.Optional.Some(Date(milliSec)))
+            } else {
+                callback.onSuccess(RxExtensions.Optional.None())
+            }
+        }
 
     override fun saveToLocal(companyInfo: CompanyInfo): Single<Unit> {
         TODO("Not yet implemented")
