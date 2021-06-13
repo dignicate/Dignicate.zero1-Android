@@ -2,7 +2,7 @@ package com.dignicate.zero1.infra.mock.subject01
 
 import com.dignicate.zero1.domain.subject01.BasicFetchMockDomain
 import com.dignicate.zero1.domain.subject01.CompanyInfo
-import com.dignicate.zero1.domain.subject01.SimpleCompanyInfoRepositoryInterface
+import com.dignicate.zero1.domain.subject01.case101.SimpleCompanyInfoRepositoryInterface
 import io.reactivex.Single
 import kotlin.concurrent.thread
 
@@ -13,6 +13,7 @@ class SimpleCompanyInfoRepositoryMock(private val delayMs: Long) : SimpleCompany
                 Thread.sleep(delayMs)
                 callback.onSuccess(
                     CompanyInfo(
+                        id = CompanyInfo.Id(value = 1234),
                         nameJP = "ディグニケート合同会社",
                         nameEN = "Dignicate, LLC",
                         address = "東京都新宿区西新宿３−１−５新宿嘉泉ビル８F",

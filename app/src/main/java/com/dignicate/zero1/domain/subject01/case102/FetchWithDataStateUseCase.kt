@@ -1,15 +1,16 @@
 package com.dignicate.zero1.domain.subject01.case102
 
 import com.dignicate.zero1.domain.subject01.CompanyInfo
-import com.dignicate.zero1.domain.subject01.SimpleCompanyInfoRepositoryInterface
+import com.dignicate.zero1.domain.subject01.case101.SimpleCompanyInfoRepositoryInterface
 import com.dignicate.zero1.rx.DisposeBag
-import com.dignicate.zero1.rx.bindTo
-import com.dignicate.zero1.rx.disposedBy
+import com.dignicate.zero1.rx.RxExtensions.bindTo
+import com.dignicate.zero1.rx.RxExtensions.disposedBy
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 
 class FetchWithDataStateUseCase(disposeBag: DisposeBag,
-                                repository: SimpleCompanyInfoRepositoryInterface) {
+                                repository: SimpleCompanyInfoRepositoryInterface
+) {
 
     sealed class DataState {
         class Success(val data: CompanyInfo) : DataState()
@@ -33,13 +34,12 @@ class FetchWithDataStateUseCase(disposeBag: DisposeBag,
     val companyInfo: Observable<CompanyInfo>
         get() =
             companyInfoDataStateSubject
-                .filter {
+                .switchMap {
                     when (it) {
-                        is DataState.Success -> true
-                        is DataState.InProgress, DataState.Failure -> false
+                        is DataState.Success -> Observable.just(it.data)
+                        is DataState.InProgress, DataState.Failure -> Observable.empty()
                     }
                 }
-                .map { (it as DataState.Success).data }
 
     val isInProgress: Observable<Boolean>
         get() =

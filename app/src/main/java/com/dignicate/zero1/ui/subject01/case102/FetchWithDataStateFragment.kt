@@ -9,9 +9,10 @@ import android.view.ViewGroup
 import com.dignicate.zero1.R
 import com.dignicate.zero1.databinding.FetchWithDataStateFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
-import com.dignicate.zero1.rx.bindTo
-import com.dignicate.zero1.rx.bindVisibilityTo
-import com.dignicate.zero1.rx.disposedBy
+import com.dignicate.zero1.rx.RxExtensions.bindTextTo
+import com.dignicate.zero1.rx.RxExtensions.bindTo
+import com.dignicate.zero1.rx.RxExtensions.bindVisibilityTo
+import com.dignicate.zero1.rx.RxExtensions.disposedBy
 
 class FetchWithDataStateFragment : Fragment() {
 
@@ -50,27 +51,27 @@ class FetchWithDataStateFragment : Fragment() {
 
     private fun setupBinding() {
         viewModel.companyNameJP
-            .bindTo(binding.fetchWithDataStateCompanyNameJpLabel)
+            .bindTextTo(binding.fetchWithDataStateCompanyNameJpLabel)
             .disposedBy(disposeBag)
 
         viewModel.companyNameEN
-            .bindTo(binding.fetchWithDataStateCompanyNameEnLabel)
+            .bindTextTo(binding.fetchWithDataStateCompanyNameEnLabel)
             .disposedBy(disposeBag)
 
         viewModel.address
-            .bindTo(binding.fetchWithDataStateAddressLabel)
+            .bindTextTo(binding.fetchWithDataStateAddressLabel)
             .disposedBy(disposeBag)
 
         viewModel.foundationDate
-            .bindTo(binding.fetchWithDataStateFoundationDateLabel)
+            .bindTextTo(binding.fetchWithDataStateFoundationDateLabel)
             .disposedBy(disposeBag)
 
         viewModel.capital
-            .bindTo(binding.fetchWithDataStateCapitalLabel)
+            .bindTextTo(binding.fetchWithDataStateCapitalLabel)
             .disposedBy(disposeBag)
 
         viewModel.numberOfEmployees
-            .bindTo(binding.fetchWithDataStateNumberOfEmployeeLabel)
+            .bindTextTo(binding.fetchWithDataStateNumberOfEmployeeLabel)
             .disposedBy(disposeBag)
 
         viewModel.visibilityOfProgress

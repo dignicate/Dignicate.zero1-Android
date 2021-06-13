@@ -8,8 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.dignicate.zero1.databinding.BasicFetchApiFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
-import com.dignicate.zero1.rx.bindTo
-import com.dignicate.zero1.rx.disposedBy
+import com.dignicate.zero1.rx.RxExtensions.bindTextTo
+import com.dignicate.zero1.rx.RxExtensions.bindTo
+import com.dignicate.zero1.rx.RxExtensions.disposedBy
 
 class BasicFetchApiFragment : Fragment() {
 
@@ -46,27 +47,27 @@ class BasicFetchApiFragment : Fragment() {
 
     private fun setupBinding() {
         viewModel.companyNameJP
-            .bindTo(binding.basicFetchCompanyNameJpLabel)
+            .bindTextTo(binding.basicFetchApiCompanyNameJpLabel)
             .disposedBy(disposeBag)
 
         viewModel.companyNameEN
-            .bindTo(binding.basicFetchCompanyNameEnLabel)
+            .bindTextTo(binding.basicFetchApiCompanyNameEnLabel)
             .disposedBy(disposeBag)
 
         viewModel.address
-            .bindTo(binding.basicFetchAddressLabel)
+            .bindTextTo(binding.basicFetchAddressLabel)
             .disposedBy(disposeBag)
 
         viewModel.foundationDate
-            .bindTo(binding.basicFetchFoundationDateLabel)
+            .bindTextTo(binding.basicFetchFoundationDateLabel)
             .disposedBy(disposeBag)
 
         viewModel.capital
-            .bindTo(binding.basicFetchCapitalLabel)
+            .bindTextTo(binding.basicFetchCapitalLabel)
             .disposedBy(disposeBag)
 
         viewModel.numberOfEmployees
-            .bindTo(binding.basicFetchNumberOfEmployeeLabel)
+            .bindTextTo(binding.basicFetchNumberOfEmployeeLabel)
             .disposedBy(disposeBag)
     }
 
