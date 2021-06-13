@@ -39,7 +39,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="108dp"
+                android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="和名"
@@ -62,7 +62,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="108dp"
+                android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="英名"
@@ -112,7 +112,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="108dp"
+                android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="処理状況"
@@ -135,7 +135,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="108dp"
+                android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="データ取得元"
@@ -158,7 +158,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="108dp"
+                android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="最終保存日時"
