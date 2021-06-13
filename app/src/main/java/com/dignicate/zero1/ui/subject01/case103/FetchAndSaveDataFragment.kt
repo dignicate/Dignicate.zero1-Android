@@ -42,39 +42,46 @@ class FetchAndSaveDataFragment : Fragment() {
     }
 
     private fun setupUi() {
-        binding.fetchAndSaveDataFetchButton.setOnClickListener {
-            viewModel.didTapFetchButton(1234)
+        binding.apply {
+            fetchAndSaveDataFetchButton.setOnClickListener {
+                viewModel.didTapFetchButton(1234)
+            }
+            fetchAndSaveDataClearButton.setOnClickListener {
+                viewModel.didTapClearButton()
+            }
         }
     }
 
     private fun setupBinding() {
-        viewModel.companyNameJP
-            .bindTextTo(binding.fetchAndSaveDataNameJpLabel)
-            .disposedBy(disposeBag)
+        viewModel.apply {
+            companyNameJP
+                .bindTextTo(binding.fetchAndSaveDataNameJpLabel)
+                .disposedBy(disposeBag)
 
-        viewModel.companyNameEN
-            .bindTextTo(binding.fetchAndSaveDataNameEnLabel)
-            .disposedBy(disposeBag)
+            companyNameEN
+                .bindTextTo(binding.fetchAndSaveDataNameEnLabel)
+                .disposedBy(disposeBag)
 
-        viewModel.lastUpdated
-            .bindTextTo(binding.fetchAndSaveDataLastUpdatedLabel)
-            .disposedBy(disposeBag)
+            lastUpdated
+                .bindTextTo(binding.fetchAndSaveDataLastUpdatedLabel)
+                .disposedBy(disposeBag)
 
-        viewModel.shouldEnableClearButton
-            .bindEnabledTo(binding.fetchAndSaveDataClearButton)
-            .disposedBy(disposeBag)
+            shouldEnableClearButton
+                .bindEnabledTo(binding.fetchAndSaveDataClearButton)
+                .disposedBy(disposeBag)
 
-        viewModel.shouldEnableFetchButton
-            .bindEnabledTo(binding.fetchAndSaveDataFetchButton)
-            .disposedBy(disposeBag)
+            shouldEnableFetchButton
+                .bindEnabledTo(binding.fetchAndSaveDataFetchButton)
+                .disposedBy(disposeBag)
 
-        viewModel.dataState
-            .bindTextTo(binding.fetchAndSaveDataDataState)
-            .disposedBy(disposeBag)
+            dataState
+                .bindTextTo(binding.fetchAndSaveDataDataState)
+                .disposedBy(disposeBag)
 
-        viewModel.processState
-            .bindTextTo(binding.fetchAndSaveDataProcessState)
-            .disposedBy(disposeBag)
+            processState
+                .bindTextTo(binding.fetchAndSaveDataProcessState)
+                .disposedBy(disposeBag)
+        }
     }
 
     override fun onDestroy() {
