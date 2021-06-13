@@ -1,6 +1,7 @@
 package com.dignicate.zero1.rx
 
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -63,10 +64,14 @@ object RxExtensions {
             )
     }
 
-    fun Observable<Boolean>.bindEnabledTo(view: View): Disposable {
+    fun Observable<Boolean>.bindEnabledTo(button: Button): Disposable {
         return subscribeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                onNext@ { view.isSaveEnabled = it },
+                onNext@ {
+                    GlobalScope.launch(Dispatchers.Main) {
+                        button.isEnabled = it
+                    }
+                },
                 onError@ { Timber.e(it) }
             )
     }

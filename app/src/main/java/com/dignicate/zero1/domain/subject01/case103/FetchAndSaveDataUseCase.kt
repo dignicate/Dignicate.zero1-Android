@@ -140,6 +140,7 @@ class FetchAndSaveDataUseCase(private val disposeBag: DisposeBag,
             .disposedBy(disposeBag)
 
         saveCompleteRelay
+            .doOnNext { print("saveCompleteRelay: $it") }
             .map { ProcessState.Saved }
             .bindTo(processStateRelay)
             .disposedBy(disposeBag)
