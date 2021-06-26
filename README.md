@@ -11,6 +11,7 @@ The project focuses mainly on asynchronous data flow over layered structure such
 We do not mention:
 * Any of network interaction, detailed usage of libraries like Retrofit. Infrastructure such as fetching external data and sending them out of boundary, are all implemented by mock objects.
 * User interface and design concerns.
+* We do not use libraries such as Dagger, Room and Retrofit which are popular and officially encouraged. In terms especially of Dagger, we emphasize 'what is dependency injection (DI)' instead of 'how to use the DI containers'.
 * Detailed explanation of fundamental knowledge such as Kotlin / Java, Object orientation, MVVM and Dependency injection.
 
 ## Getting Started
