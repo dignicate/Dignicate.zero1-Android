@@ -3,6 +3,7 @@
 ## Abstract
 The _Dignicate.zero1_ is an example project for native-Android development, created by _[Dignicate, LLC](https://dignicate.com)_ to prescribe in-house standard.
 It also is to share our experiences in the form of case studies based on situations we encountered so far.
+Please not that this project is created after the [iOS counterpart](https://github.com/dignicate/Dignicate.zero1-iOS) and we make the Android project as resemble it on the whole structure as possible.
 
 ## Focus
 The project focuses mainly on asynchronous data flow over layered structure such as _Model-View-ViewModel_ and so-called _Clean Architecture_.
