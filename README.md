@@ -20,3 +20,8 @@ We do not mention:
 ```
 git clone https://github.com/dignicate/Dignicate.zero1-iOS.git
 ```
+
+## Screen Shot
+
+<img src="https://user-images.githubusercontent.com/57293323/123500608-537d3200-d67a-11eb-8050-bd0303c03f26.png" width="320"/>
+
