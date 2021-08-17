@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dignicatezero1">
         <activity
-            android:name=".ComposeMainActivity"
+            android:name=".ui.main.ComposeMainActivity"
             android:exported="true"
             android:label="@string/title_activity_compose_main"
             android:theme="@style/Theme.Dignicatezero1.NoActionBar" />
@@ -19,8 +19,8 @@
         <activity android:name=".ui.subject01.case103.FetchAndSaveDataActivity" />
         <activity
             android:name=".ui.subject01.case101.BasicFetchApiActivity"
-            android:label="Basic Fetch API"></activity>
-        <activity android:name=".ui.main.MainActivity">
+            android:label="Basic Fetch API"/>
+        <activity android:name=".ui.main.MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

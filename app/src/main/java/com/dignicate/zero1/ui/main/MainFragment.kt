@@ -80,16 +80,19 @@ class MainFragment : Fragment() {
                     MainViewModel.Item.FETCH_AND_SAVE_DATA -> {
                         startActivity(Intent(requireContext(), FetchAndSaveDataActivity::class.java))
                     }
-                    // TODO: Must be exhaustive.
-                    else -> {
-
+                    MainViewModel.Item.COMPOSE_MAIN_PAGE -> {
+                        startActivity(Intent(requireContext(), ComposeMainActivity::class.java))
                     }
+//                    // TODO: Must be exhaustive.
+//                    else -> {
+//
+//                    }
                 }
             }
         }
     }
 
-    class Adapter(val onClick: (MainViewModel.Item) -> Unit) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+    class Adapter(private val onClick: (MainViewModel.Item) -> Unit) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
         private var data: List<MainViewModel.RowState> = emptyList()
 

@@ -80,7 +80,8 @@ class MainViewModel : ViewModel() {
             Item.VALIDATE_AND_AUTO_CORRECT,
             Item.STORE_INPUTS_OVER_SCREEN
         )),
-        COMPOSE(3, "", listOf(
+        COMPOSE(3, "Compose", listOf(
+            Item.COMPOSE_MAIN_PAGE
         ))
     }
 
