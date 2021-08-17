@@ -12,6 +12,7 @@
     <color name="top_view_cell_background_enabled">#FFFFFF</color>
     <color name="top_view_cell_text_disabled">#525252</color>
     <color name="top_view_cell_text_enabled">#424242</color>
+    <color name="top_view_cell_section">#00007f</color>
     <color name="top_view_cell_number_background">#F2F2F7</color>
 
 </resources>

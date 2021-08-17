@@ -10,13 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dignicatezero1">
-        <activity android:name=".ui.subject01.case102.FetchWithDataStateActivity"/>
-        <activity android:name=".ui.subject01.case103.FetchAndSaveDataActivity"/>
+        <activity
+            android:name=".ComposeMainActivity"
+            android:exported="true"
+            android:label="@string/title_activity_compose_main"
+            android:theme="@style/Theme.Dignicatezero1.NoActionBar" />
+        <activity android:name=".ui.subject01.case102.FetchWithDataStateActivity" />
+        <activity android:name=".ui.subject01.case103.FetchAndSaveDataActivity" />
         <activity
             android:name=".ui.subject01.case101.BasicFetchApiActivity"
-            android:label="Basic Fetch API">
-
-        </activity>
+            android:label="Basic Fetch API"></activity>
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
