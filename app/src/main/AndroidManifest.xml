@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dignicatezero1">
         <activity
-            android:name=".ui.main.ComposeMainActivity"
+            android:name=".ui.main.ComposeHiltMainActivity"
             android:exported="true"
             android:label="@string/title_activity_compose_main" />
         <activity android:name=".ui.subject01.case102.FetchWithDataStateActivity" />

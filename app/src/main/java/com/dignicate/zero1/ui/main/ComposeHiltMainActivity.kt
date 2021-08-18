@@ -3,6 +3,7 @@ package com.dignicate.zero1.ui.main
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.Text
@@ -14,21 +15,19 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import com.dignicate.zero1.ui.main.MenuDefinition.ContentStructure
 import com.dignicate.zero1.ui.main.MenuDefinition.RowState
 
 @AndroidEntryPoint
-class ComposeMainActivity : ComponentActivity() {
+class ComposeHiltMainActivity : ComponentActivity() {
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: ComposeHiltMainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         setContent {
-            Content(ContentStructure.rowStates)
+            Content(viewModel.rowStates)
         }
     }
 }

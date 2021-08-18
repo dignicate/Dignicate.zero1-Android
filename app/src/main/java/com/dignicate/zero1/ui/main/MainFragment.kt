@@ -84,7 +84,7 @@ class MainFragment : Fragment() {
                         startActivity(Intent(requireContext(), FetchAndSaveDataActivity::class.java))
                     }
                     Item.COMPOSE_MAIN_PAGE -> {
-                        startActivity(Intent(requireContext(), ComposeMainActivity::class.java))
+                        startActivity(Intent(requireContext(), ComposeHiltMainActivity::class.java))
                     }
 //                    // TODO: Must be exhaustive.
 //                    else -> {

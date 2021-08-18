@@ -24,6 +24,4 @@ class MainViewModel : ViewModel() {
         super.onCleared()
         disposeBag.clear()
     }
-
-
 }
