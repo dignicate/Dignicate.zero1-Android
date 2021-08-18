@@ -48,7 +48,7 @@ private fun Header(title: String) {
     Text(
         text = title,
         modifier = Modifier.fillMaxWidth()
-            .padding(horizontal = 16.dp)
+            .padding(horizontal = 8.dp)
             .padding(top = 24.dp)
             .padding(bottom = 12.dp)
     )
@@ -62,9 +62,12 @@ private fun Item(number: Int, title: String) {
             style = TextStyle(
                 textAlign = TextAlign.Center,
             ),
-            modifier = Modifier.width(32.dp).height(32.dp).padding(top = 8.dp)
+            modifier = Modifier
+                .width(40.dp)
+                .height(40.dp)
+                .padding(top = 8.dp)
         )
-        Text(text = title, modifier = Modifier.fillMaxWidth().height(32.dp).padding(top = 8.dp))
+        Text(text = title, modifier = Modifier.fillMaxWidth().height(40.dp).padding(top = 8.dp))
     }
 }
 
