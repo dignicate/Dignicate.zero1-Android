@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import com.dignicate.zero1.rx.DisposeBag
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
+import com.dignicate.zero1.ui.main.MenuDefinition.RowState
+import com.dignicate.zero1.ui.main.MenuDefinition.ContentStructure
 
 class MainViewModel : ViewModel() {
 

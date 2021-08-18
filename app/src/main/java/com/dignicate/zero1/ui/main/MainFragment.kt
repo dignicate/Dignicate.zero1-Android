@@ -18,6 +18,9 @@ import com.dignicate.zero1.rx.RxExtensions.disposedBy
 import com.dignicate.zero1.ui.subject01.case101.BasicFetchApiActivity
 import com.dignicate.zero1.ui.subject01.case102.FetchWithDataStateActivity
 import com.dignicate.zero1.ui.subject01.case103.FetchAndSaveDataActivity
+import com.dignicate.zero1.ui.main.MenuDefinition.Item
+import com.dignicate.zero1.ui.main.MenuDefinition.RowState
+import com.dignicate.zero1.ui.main.MenuDefinition.ContentStructure
 import timber.log.Timber
 
 class MainFragment : Fragment() {

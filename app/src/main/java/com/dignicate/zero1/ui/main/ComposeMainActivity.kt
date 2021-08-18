@@ -16,6 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import com.dignicate.zero1.ui.main.MenuDefinition.ContentStructure
+import com.dignicate.zero1.ui.main.MenuDefinition.RowState
 
 @AndroidEntryPoint
 class ComposeMainActivity : ComponentActivity() {
