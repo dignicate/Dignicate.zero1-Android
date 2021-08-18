@@ -3,13 +3,13 @@ package com.dignicate.zero1.ui.main
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
@@ -22,10 +22,7 @@ class ComposeMainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         setContent {
-            Column(Modifier.padding(1.dp)) {
-                Header("Test")
-                Item(1, "Item 1")
-            }
+            Content(MainViewModel.ContentStructure.rowStates)
         }
     }
 }
@@ -48,14 +45,26 @@ private fun Content(menus: List<MainViewModel.RowState>) {
 
 @Composable
 private fun Header(title: String) {
-    Text(text = title)
+    Text(
+        text = title,
+        modifier = Modifier.fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .padding(top = 24.dp)
+            .padding(bottom = 12.dp)
+    )
 }
 
 @Composable
 private fun Item(number: Int, title: String) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Text("$number")
-        Text(title)
+        Text(
+            text = "${number + 1}",
+            style = TextStyle(
+                textAlign = TextAlign.Center,
+            ),
+            modifier = Modifier.width(32.dp).height(32.dp).padding(top = 8.dp)
+        )
+        Text(text = title, modifier = Modifier.fillMaxWidth().height(32.dp).padding(top = 8.dp))
     }
 }
 
