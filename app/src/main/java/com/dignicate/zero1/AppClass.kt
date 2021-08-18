@@ -1,8 +1,10 @@
 package com.dignicate.zero1
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
+@HiltAndroidApp
 class AppClass : Application() {
 
     companion object {
