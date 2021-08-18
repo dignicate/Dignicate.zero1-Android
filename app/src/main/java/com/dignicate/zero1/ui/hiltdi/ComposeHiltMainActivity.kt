@@ -1,4 +1,4 @@
-package com.dignicate.zero1.ui.main
+package com.dignicate.zero1.ui.hiltdi
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -16,10 +16,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dagger.hilt.android.AndroidEntryPoint
-import com.dignicate.zero1.ui.main.MenuDefinition.ContentStructure
-import com.dignicate.zero1.ui.main.MenuDefinition.RowState
-import com.dignicate.zero1.ui.main.MenuDefinition.Item
-import timber.log.Timber
+import com.dignicate.zero1.ui.manualdi.MenuDefinition.ContentStructure
+import com.dignicate.zero1.ui.manualdi.MenuDefinition.RowState
+import com.dignicate.zero1.ui.manualdi.MenuDefinition.Item
 
 @AndroidEntryPoint
 class ComposeHiltMainActivity : ComponentActivity() {

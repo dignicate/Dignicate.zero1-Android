@@ -1,4 +1,4 @@
-package com.dignicate.zero1.ui.main
+package com.dignicate.zero1.ui.manualdi
 
 import android.content.Context
 import android.content.Intent
@@ -15,12 +15,13 @@ import com.dignicate.zero1.R
 import com.dignicate.zero1.databinding.MainFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.RxExtensions.disposedBy
+import com.dignicate.zero1.ui.hiltdi.ComposeHiltMainActivity
 import com.dignicate.zero1.ui.subject01.case101.BasicFetchApiActivity
 import com.dignicate.zero1.ui.subject01.case102.FetchWithDataStateActivity
 import com.dignicate.zero1.ui.subject01.case103.FetchAndSaveDataActivity
-import com.dignicate.zero1.ui.main.MenuDefinition.Item
-import com.dignicate.zero1.ui.main.MenuDefinition.RowState
-import com.dignicate.zero1.ui.main.MenuDefinition.ContentStructure
+import com.dignicate.zero1.ui.manualdi.MenuDefinition.Item
+import com.dignicate.zero1.ui.manualdi.MenuDefinition.RowState
+import com.dignicate.zero1.ui.manualdi.MenuDefinition.ContentStructure
 import timber.log.Timber
 
 class MainFragment : Fragment() {
