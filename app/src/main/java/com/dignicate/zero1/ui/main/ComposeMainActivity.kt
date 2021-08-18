@@ -4,10 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -67,7 +69,16 @@ private fun Item(number: Int, title: String) {
                 .height(40.dp)
                 .padding(top = 8.dp)
         )
-        Text(text = title, modifier = Modifier.fillMaxWidth().height(40.dp).padding(top = 8.dp))
+        ClickableText(
+            text = AnnotatedString(title),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(40.dp)
+                .padding(top = 8.dp),
+            onClick = {
+                println(title)
+            }
+        )
     }
 }
 
