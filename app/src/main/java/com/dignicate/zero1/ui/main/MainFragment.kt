@@ -71,16 +71,16 @@ class MainFragment : Fragment() {
             layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
             adapter = Adapter {
                 when (it) {
-                    MainViewModel.Item.BASIC_FETCH -> {
+                    Item.BASIC_FETCH -> {
                         startActivity(Intent(requireContext(), BasicFetchApiActivity::class.java))
                     }
-                    MainViewModel.Item.FETCH_WITH_DATA_STATE -> {
+                    Item.FETCH_WITH_DATA_STATE -> {
                         startActivity(Intent(requireContext(), FetchWithDataStateActivity::class.java))
                     }
-                    MainViewModel.Item.FETCH_AND_SAVE_DATA -> {
+                    Item.FETCH_AND_SAVE_DATA -> {
                         startActivity(Intent(requireContext(), FetchAndSaveDataActivity::class.java))
                     }
-                    MainViewModel.Item.COMPOSE_MAIN_PAGE -> {
+                    Item.COMPOSE_MAIN_PAGE -> {
                         startActivity(Intent(requireContext(), ComposeMainActivity::class.java))
                     }
 //                    // TODO: Must be exhaustive.
@@ -92,11 +92,11 @@ class MainFragment : Fragment() {
         }
     }
 
-    class Adapter(private val onClick: (MainViewModel.Item) -> Unit) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+    class Adapter(private val onClick: (Item) -> Unit) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
-        private var data: List<MainViewModel.RowState> = emptyList()
+        private var data: List<RowState> = emptyList()
 
-        fun setData(data: List<MainViewModel.RowState>) {
+        fun setData(data: List<RowState>) {
             this.data = data
             notifyDataSetChanged()
         }
@@ -107,9 +107,9 @@ class MainFragment : Fragment() {
         }
 
         override fun getItemViewType(position: Int): Int {
-            return when (MainViewModel.ContentStructure.rowOf(position)) {
-                is MainViewModel.RowState.SectionRow -> ViewType.SECTION.value
-                is MainViewModel.RowState.ItemRow -> ViewType.ITEM.value
+            return when (ContentStructure.rowOf(position)) {
+                is RowState.SectionRow -> ViewType.SECTION.value
+                is RowState.ItemRow -> ViewType.ITEM.value
             }
         }
 
@@ -160,7 +160,7 @@ class MainFragment : Fragment() {
             private val titleLabel: TextView = view.findViewById(R.id.mainRowItemTitle)
             private val background: View = view.findViewById(R.id.mainRowItemRoot)
 
-            fun configure(number: Int, item: MainViewModel.Item, onClick: (MainViewModel.Item) -> Unit) {
+            fun configure(number: Int, item: Item, onClick: (Item) -> Unit) {
                 numberLabel.text = "$number"
                 titleLabel.text = item.title
                 background.setOnClickListener { onClick(item) }

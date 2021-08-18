@@ -26,20 +26,20 @@ class ComposeMainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         setContent {
-            Content(MainViewModel.ContentStructure.rowStates)
+            Content(ContentStructure.rowStates)
         }
     }
 }
 
 @Composable
-private fun Content(menus: List<MainViewModel.RowState>) {
+private fun Content(menus: List<RowState>) {
     Column(Modifier.padding(1.dp)) {
         menus.forEach {
             when (it) {
-                is MainViewModel.RowState.SectionRow -> {
+                is RowState.SectionRow -> {
                     Header(it.section!!.title)
                 }
-                is MainViewModel.RowState.ItemRow -> {
+                is RowState.ItemRow -> {
                     Item(it.indexedItem!!.second, it.indexedItem!!.first.title)
                 }
             }
@@ -87,5 +87,5 @@ private fun Item(number: Int, title: String) {
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    Content(MainViewModel.ContentStructure.rowStates)
+    Content(ContentStructure.rowStates)
 }
