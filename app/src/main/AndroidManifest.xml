@@ -13,8 +13,7 @@
         <activity
             android:name=".ui.main.ComposeMainActivity"
             android:exported="true"
-            android:label="@string/title_activity_compose_main"
-            android:theme="@style/Theme.Dignicatezero1.NoActionBar" />
+            android:label="@string/title_activity_compose_main" />
         <activity android:name=".ui.subject01.case102.FetchWithDataStateActivity" />
         <activity android:name=".ui.subject01.case103.FetchAndSaveDataActivity" />
         <activity
