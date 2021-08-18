@@ -18,6 +18,8 @@ import androidx.compose.ui.unit.dp
 import dagger.hilt.android.AndroidEntryPoint
 import com.dignicate.zero1.ui.main.MenuDefinition.ContentStructure
 import com.dignicate.zero1.ui.main.MenuDefinition.RowState
+import com.dignicate.zero1.ui.main.MenuDefinition.Item
+import timber.log.Timber
 
 @AndroidEntryPoint
 class ComposeHiltMainActivity : ComponentActivity() {
@@ -27,13 +29,19 @@ class ComposeHiltMainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Content(viewModel.rowStates)
+            Content(viewModel.rowStates) {
+                when (it) {
+                    Item.BASIC_FETCH -> {
+
+                    }
+                }
+            }
         }
     }
 }
 
 @Composable
-private fun Content(menus: List<RowState>) {
+private fun Content(menus: List<RowState>, onClick: (Item) -> Unit) {
     Column(Modifier.padding(1.dp)) {
         menus.forEach {
             when (it) {
@@ -41,7 +49,8 @@ private fun Content(menus: List<RowState>) {
                     Header(it.section!!.title)
                 }
                 is RowState.ItemRow -> {
-                    Item(it.indexedItem!!.second, it.indexedItem!!.first.title)
+                    val item = it.indexedItem!!.first
+                    Item(it.indexedItem!!.second, item.title, onClick = { onClick.invoke(item) })
                 }
             }
         }
@@ -60,7 +69,7 @@ private fun Header(title: String) {
 }
 
 @Composable
-private fun Item(number: Int, title: String) {
+private fun Item(number: Int, title: String, onClick: () -> Unit) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Text(
             text = "${number + 1}",
@@ -78,9 +87,7 @@ private fun Item(number: Int, title: String) {
                 .fillMaxWidth()
                 .height(40.dp)
                 .padding(top = 8.dp),
-            onClick = {
-                println(title)
-            }
+            onClick = { onClick.invoke() }
         )
     }
 }
@@ -88,5 +95,5 @@ private fun Item(number: Int, title: String) {
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    Content(ContentStructure.rowStates)
+    Content(ContentStructure.rowStates, onClick = {})
 }
