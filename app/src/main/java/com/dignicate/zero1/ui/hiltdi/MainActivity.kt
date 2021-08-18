@@ -19,16 +19,18 @@ import dagger.hilt.android.AndroidEntryPoint
 import com.dignicate.zero1.ui.manualdi.MenuDefinition.ContentStructure
 import com.dignicate.zero1.ui.manualdi.MenuDefinition.RowState
 import com.dignicate.zero1.ui.manualdi.MenuDefinition.Item
+import timber.log.Timber
 
 @AndroidEntryPoint
-class ComposeHiltMainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity() {
 
-    private val viewModel: ComposeHiltMainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             Content(viewModel.rowStates) {
+                Timber.d("item: $it")
                 when (it) {
                     Item.BASIC_FETCH -> {
 

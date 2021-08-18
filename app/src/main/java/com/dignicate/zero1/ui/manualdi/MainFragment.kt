@@ -15,7 +15,7 @@ import com.dignicate.zero1.R
 import com.dignicate.zero1.databinding.MainFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.RxExtensions.disposedBy
-import com.dignicate.zero1.ui.hiltdi.ComposeHiltMainActivity
+import com.dignicate.zero1.ui.hiltdi.MainActivity
 import com.dignicate.zero1.ui.subject01.case101.BasicFetchApiActivity
 import com.dignicate.zero1.ui.subject01.case102.FetchWithDataStateActivity
 import com.dignicate.zero1.ui.subject01.case103.FetchAndSaveDataActivity
@@ -85,7 +85,7 @@ class MainFragment : Fragment() {
                         startActivity(Intent(requireContext(), FetchAndSaveDataActivity::class.java))
                     }
                     Item.COMPOSE_MAIN_PAGE -> {
-                        startActivity(Intent(requireContext(), ComposeHiltMainActivity::class.java))
+                        startActivity(Intent(requireContext(), MainActivity::class.java))
                     }
 //                    // TODO: Must be exhaustive.
 //                    else -> {
