@@ -2,7 +2,9 @@ package com.dignicate.zero1.ui.manualdi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.dignicate.zero1.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dignicate.zero1.databinding.MainActivityBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,10 +17,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if (savedInstanceState == null) {
-//            supportFragmentManager.beginTransaction()
-//                .replace(R.id.container, MainFragment.newInstance())
-//                .commitNow()
+        binding.pager.adapter = PagerAdapter(this)
+    }
+
+    private inner class PagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
+        override fun getItemCount(): Int {
+            return 2
+        }
+
+        override fun createFragment(position: Int): Fragment {
+            return when (position) {
+                0 -> MainFragment.newInstance()
+                1 -> com.dignicate.zero1.ui.hiltdi.MainFragment.newInstance()
+                else -> throw IllegalStateException("position: $position")
+            }
         }
     }
 }

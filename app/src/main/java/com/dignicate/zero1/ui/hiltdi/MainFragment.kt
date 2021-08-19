@@ -18,13 +18,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.dignicate.zero1.ui.manualdi.MenuDefinition
 
 class MainFragment : Fragment() {
 
-    private val viewModel: MainViewModel by requireActivity().viewModels()
+    companion object {
+        fun newInstance() = MainFragment()
+    }
+
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         return ComposeView(requireContext()).apply {
             setContent {
                 Content(viewModel.rowStates) {

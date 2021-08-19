@@ -24,30 +24,11 @@
             app:tabIndicatorGravity="center"
             app:tabMode="scrollable" />
 
-        <!--
-            app:tabIndicator="@drawable/tab_background"
-        -->
-
-        <!--
-        <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mainRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </FrameLayout>
-        -->
-
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/topPageViewPager"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_height="match_parent" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
