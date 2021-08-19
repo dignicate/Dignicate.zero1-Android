@@ -1,8 +1,9 @@
 package com.dignicate.zero1.ui.hiltdi
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.ClickableText
@@ -10,30 +11,27 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dagger.hilt.android.AndroidEntryPoint
-import com.dignicate.zero1.ui.manualdi.MenuDefinition.ContentStructure
-import com.dignicate.zero1.ui.manualdi.MenuDefinition.RowState
-import com.dignicate.zero1.ui.manualdi.MenuDefinition.Item
-import timber.log.Timber
+import androidx.fragment.app.Fragment
+import com.dignicate.zero1.ui.manualdi.MenuDefinition
 
-@AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainFragment : Fragment() {
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by requireActivity().viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            Content(viewModel.rowStates) {
-                Timber.d("item: $it")
-                when (it) {
-                    Item.BASIC_FETCH -> {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        return ComposeView(requireContext()).apply {
+            setContent {
+                Content(viewModel.rowStates) {
+                    when (it) {
+                        MenuDefinition.Item.BASIC_FETCH -> {
 
+                        }
                     }
                 }
             }
@@ -42,14 +40,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun Content(menus: List<RowState>, onClick: (Item) -> Unit) {
+private fun Content(menus: List<MenuDefinition.RowState>, onClick: (MenuDefinition.Item) -> Unit) {
     Column(Modifier.padding(1.dp)) {
         menus.forEach {
             when (it) {
-                is RowState.SectionRow -> {
+                is MenuDefinition.RowState.SectionRow -> {
                     Header(it.section!!.title)
                 }
-                is RowState.ItemRow -> {
+                is MenuDefinition.RowState.ItemRow -> {
                     val item = it.indexedItem!!.first
                     Item(it.indexedItem!!.second, item.title, onClick = { onClick.invoke(item) })
                 }
@@ -96,5 +94,5 @@ private fun Item(number: Int, title: String, onClick: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    Content(ContentStructure.rowStates, onClick = {})
+    Content(MenuDefinition.ContentStructure.rowStates, onClick = {})
 }
