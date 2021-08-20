@@ -1,6 +1,7 @@
-package com.dignicate.zero1.domain.subject01.case101
+package com.dignicate.zero1.domain.subject01.case101.manualdi
 
 import com.dignicate.zero1.domain.subject01.CompanyInfo
+import com.dignicate.zero1.domain.subject01.case101.SimpleCompanyInfoRepositoryInterface
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.RxExtensions.bindTo
 import com.dignicate.zero1.rx.RxExtensions.disposedBy

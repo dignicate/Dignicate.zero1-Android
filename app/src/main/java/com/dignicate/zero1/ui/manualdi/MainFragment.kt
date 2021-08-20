@@ -15,7 +15,7 @@ import com.dignicate.zero1.R
 import com.dignicate.zero1.databinding.MainFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.RxExtensions.disposedBy
-import com.dignicate.zero1.ui.subject01.case101.BasicFetchApiActivity
+import com.dignicate.zero1.ui.subject01.case101.manualdi.BasicFetchApiActivity
 import com.dignicate.zero1.ui.subject01.case102.FetchWithDataStateActivity
 import com.dignicate.zero1.ui.subject01.case103.FetchAndSaveDataActivity
 import com.dignicate.zero1.ui.manualdi.MenuDefinition.Item

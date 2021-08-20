@@ -1,4 +1,4 @@
-package com.dignicate.zero1.ui.subject01.case101
+package com.dignicate.zero1.ui.subject01.case101.manualdi
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import com.dignicate.zero1.databinding.BasicFetchApiFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.RxExtensions.bindTextTo
-import com.dignicate.zero1.rx.RxExtensions.bindTo
 import com.dignicate.zero1.rx.RxExtensions.disposedBy
 
 class BasicFetchApiFragment : Fragment() {

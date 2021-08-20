@@ -1,4 +1,4 @@
-package com.dignicate.zero1.ui.subject01.case101
+package com.dignicate.zero1.ui.subject01.case101.manualdi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
