@@ -83,9 +83,6 @@ class MainFragment : Fragment() {
                     Item.FETCH_AND_SAVE_DATA -> {
                         startActivity(Intent(requireContext(), FetchAndSaveDataActivity::class.java))
                     }
-                    Item.COMPOSE_MAIN_PAGE -> {
-                        startActivity(Intent(requireContext(), MainActivity::class.java))
-                    }
 //                    // TODO: Must be exhaustive.
 //                    else -> {
 //

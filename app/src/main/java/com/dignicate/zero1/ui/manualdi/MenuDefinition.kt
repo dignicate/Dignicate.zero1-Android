@@ -58,9 +58,6 @@ object MenuDefinition {
             Item.SIMPLE_VALIDATION,
             Item.VALIDATE_AND_AUTO_CORRECT,
             Item.STORE_INPUTS_OVER_SCREEN
-        )),
-        COMPOSE(3, "Compose", listOf(
-            Item.COMPOSE_MAIN_PAGE
         ))
     }
 
@@ -73,8 +70,7 @@ object MenuDefinition {
         PAGINATION("Pagination", false),
         SIMPLE_VALIDATION("Simple validation", false),
         VALIDATE_AND_AUTO_CORRECT("Validate and auto-correct", false),
-        STORE_INPUTS_OVER_SCREEN("Store inputs over screens", false),
-        COMPOSE_MAIN_PAGE("Go to Compose Main", true),
+        STORE_INPUTS_OVER_SCREEN("Store inputs over screens", false)
     }
 }
 
