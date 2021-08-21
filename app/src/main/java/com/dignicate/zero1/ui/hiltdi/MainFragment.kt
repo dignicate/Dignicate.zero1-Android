@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,10 +19,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dignicate.zero1.ui.manualdi.MenuDefinition
 import com.dignicate.zero1.ui.subject01.case101.hiltdi.BasicFetchApiActivity
+import com.dignicate.zero1.ui.theme.Gray
+import com.dignicate.zero1.ui.theme.LightGray
+import com.dignicate.zero1.ui.theme.Purple700
 
 class MainFragment : Fragment() {
 
@@ -70,32 +76,46 @@ private fun Header(title: String) {
         modifier = Modifier.fillMaxWidth()
             .padding(horizontal = 8.dp)
             .padding(top = 24.dp)
-            .padding(bottom = 12.dp)
+            .padding(bottom = 12.dp),
+        style = TextStyle(
+            fontSize = 16.sp,
+            color = Purple700
+        )
     )
 }
 
 @Composable
 private fun Item(number: Int, title: String, onClick: () -> Unit) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Text(
-            text = "${number + 1}",
-            style = TextStyle(
-                textAlign = TextAlign.Center,
-            ),
-            modifier = Modifier
-                .width(40.dp)
-                .height(40.dp)
-                .padding(top = 8.dp)
-        )
-        ClickableText(
-            text = AnnotatedString(title),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(40.dp)
-                .padding(top = 8.dp),
-            onClick = { onClick.invoke() }
-        )
+    Column {
+        Row {
+            Row(
+                verticalAlignment = Alignment.Bottom,
+                modifier = Modifier
+                    .width(40.dp)
+                    .height(40.dp)
+                    .background(color = LightGray)
+            ) {
+                Text(
+                    text = "${number + 1}",
+                    modifier = Modifier.width(40.dp).height(32.dp),
+                    style = TextStyle(
+                        textAlign = TextAlign.Center,
+                    )
+                )
+            }
+            ClickableText(
+                text = AnnotatedString(title),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)
+                    .padding(start = 8.dp)
+                    .padding(top = 8.dp),
+                onClick = { onClick.invoke() }
+            )
+        }
+        Divider(color = Gray, thickness = 1.dp)
     }
+
 }
 
 @Preview(showBackground = true)

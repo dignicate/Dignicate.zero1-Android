@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
             tab.text = when (position) {
                 0 -> "Manual DI"
-                1 -> "Hilt DI"
+                1 -> "Hilt & Compose"
                 else -> throw IllegalStateException("position: $position")
             }
         }.attach()
