@@ -17,9 +17,9 @@ class BasicFetchApiUse @Inject constructor() : BasicFetchApiUseCaseInterface {
     private val companyInfoSubject = PublishSubject.create<CompanyInfo>()
 
     override val companyInfo: Observable<CompanyInfo>
-        get() = TODO("Not yet implemented")
+        get() = companyInfoSubject
 
     override fun fetch(id: Int) {
-        TODO("Not yet implemented")
+        fetchTrigger.onNext(CompanyInfo.Id(id))
     }
 }
