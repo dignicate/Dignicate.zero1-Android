@@ -164,7 +164,7 @@ class MainFragment : Fragment() {
                 numberLabel.text = "$number"
                 titleLabel.text = item.title
                 background.setOnClickListener { onClick(item) }
-                if (item.isAvailable) {
+                if (item.isManualAvailable) {
                     titleLabel.setTextColor(ContextCompat.getColor(context, R.color.top_view_cell_text_enabled))
                     background.setBackgroundResource(R.color.top_view_cell_background_enabled)
                 } else {
