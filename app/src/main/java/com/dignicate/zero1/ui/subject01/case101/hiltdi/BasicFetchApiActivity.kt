@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -17,9 +15,6 @@ import androidx.compose.ui.unit.dp
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.ui.theme.Dignicatezero1Theme
 import dagger.hilt.android.AndroidEntryPoint
-import androidx.compose.runtime.getValue
-import com.dignicate.zero1.rx.RxExtensions.disposedBy
-import timber.log.Timber
 
 @AndroidEntryPoint
 class BasicFetchApiActivity : ComponentActivity() {
@@ -62,7 +57,8 @@ private fun Content(viewModel: BasicFetchApiViewModel) {
                         .padding(start = 24.dp),
                     textAlign = TextAlign.Start
                 )
-                Item("和名", viewModel)
+                Item("和名")
+                Item("英名")
                 Column(
                     verticalArrangement = Arrangement.Bottom,
                     horizontalAlignment = Alignment.CenterHorizontally
@@ -82,17 +78,14 @@ private fun Content(viewModel: BasicFetchApiViewModel) {
 }
 
 @Composable
-private fun Item(title: String, viewModel: BasicFetchApiViewModel) {
-    val name by remember {
-        mutableStateOf(viewModel.companyNameJP)
-    }
+private fun Item(title: String) {
     Row(Modifier.padding(24.dp)) {
         Text(
             text = title,
             modifier = Modifier.width(108.dp)
         )
         Text(
-            text = "$name",
+            text = "TODO (use mutable state here)",
             modifier = Modifier.fillMaxWidth()
         )
     }
