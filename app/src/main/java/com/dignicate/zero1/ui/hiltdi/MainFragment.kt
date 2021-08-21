@@ -13,6 +13,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
@@ -62,7 +63,11 @@ private fun Content(menus: List<MenuDefinition.RowState>, onClick: (MenuDefiniti
                 }
                 is MenuDefinition.RowState.ItemRow -> {
                     val item = it.indexedItem!!.first
-                    Item(it.indexedItem!!.second, item.title, onClick = { onClick.invoke(item) })
+                    Item(
+                        it.indexedItem!!.second,
+                        item.title,
+                        item.isHiltAvailable,
+                        onClick = { onClick.invoke(item) })
                 }
             }
         }
@@ -85,7 +90,7 @@ private fun Header(title: String) {
 }
 
 @Composable
-private fun Item(number: Int, title: String, onClick: () -> Unit) {
+private fun Item(number: Int, title: String, isAvailable: Boolean, onClick: () -> Unit) {
     Column {
         Row {
             Row(
@@ -100,18 +105,30 @@ private fun Item(number: Int, title: String, onClick: () -> Unit) {
                     modifier = Modifier.width(40.dp).height(32.dp),
                     style = TextStyle(
                         textAlign = TextAlign.Center,
+                        color = if (isAvailable) Color.Black else Color.Gray
                     )
                 )
             }
-            ClickableText(
-                text = AnnotatedString(title),
+            Row(
+                verticalAlignment = Alignment.Bottom,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(40.dp)
-                    .padding(start = 8.dp)
-                    .padding(top = 8.dp),
-                onClick = { onClick.invoke() }
-            )
+                    .background(color = if (isAvailable) Color.White else LightGray)
+            ) {
+                ClickableText(
+                    text = AnnotatedString(title),
+                    style = TextStyle(
+                        color = if (isAvailable) Color.Black else Color.Gray
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(40.dp)
+                        .padding(start = 8.dp)
+                        .padding(top = 8.dp),
+                    onClick = { onClick.invoke() }
+                )
+            }
         }
         Divider(color = Gray, thickness = 1.dp)
     }
