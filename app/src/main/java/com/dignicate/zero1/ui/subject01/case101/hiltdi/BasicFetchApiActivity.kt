@@ -13,6 +13,7 @@ import androidx.compose.runtime.rxjava2.subscribeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dignicate.zero1.ui.theme.Dignicatezero1Theme
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,13 +27,15 @@ class BasicFetchApiActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Content(viewModel)
+            Content(viewModel.data) {
+                viewModel.didTapFetchButton(1234)
+            }
         }
     }
 }
 
 @Composable
-private fun Content(viewModel: BasicFetchApiViewModel) {
+private fun Content(data: BasicFetchApiViewModel.Data, didTapFetchButton: () -> Unit) {
     Dignicatezero1Theme {
         Box {
             Column(
@@ -47,15 +50,15 @@ private fun Content(viewModel: BasicFetchApiViewModel) {
                         .padding(start = 24.dp),
                     textAlign = TextAlign.Start
                 )
-                Item("和名", viewModel.companyNameJP)
-                Item("英名", viewModel.companyNameEN)
+                Item("和名", data.companyNameJP)
+                Item("英名", data.companyNameEN)
                 Row(
                     verticalAlignment = Alignment.Bottom,
                     modifier = Modifier.fillMaxHeight()
                 ) {
                     Button(
                         onClick = {
-                            viewModel.didTapFetchButton(123)
+                            didTapFetchButton.invoke()
                         },
                         modifier = Modifier.padding(bottom = 32.dp)
                     ) {
@@ -86,8 +89,13 @@ private fun Item(title: String, observable: Observable<String>) {
     }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//private fun Preview() {
-//    Content {}
-//}
+@Preview(showBackground = true)
+@Composable
+private fun Preview() {
+    Content(
+        BasicFetchApiViewModel.Data(
+            companyNameJP = Observable.just("name JP"),
+            companyNameEN = Observable.just("name EN")
+        )
+    ) {}
+}

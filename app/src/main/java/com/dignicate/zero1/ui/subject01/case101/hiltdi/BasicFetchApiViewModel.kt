@@ -12,11 +12,22 @@ class BasicFetchApiViewModel @Inject constructor(private val useCase: BasicFetch
 
     private val disposeBag = DisposeBag()
 
-    val companyNameJP: Observable<String>
-        get() = useCase.companyInfo.map { it.nameJP }
+    data class Data(
+        val companyNameJP: Observable<String>,
+        val companyNameEN: Observable<String>
+    )
 
-    val companyNameEN: Observable<String>
-        get() = useCase.companyInfo.map { it.nameEN }
+    val data: Data
+        get() = Data(
+            companyNameJP = useCase.companyInfo.map { it.nameJP },
+            companyNameEN = useCase.companyInfo.map { it.nameEN }
+        )
+
+//    val companyNameJP: Observable<String>
+//        get() = useCase.companyInfo.map { it.nameJP }
+//
+//    val companyNameEN: Observable<String>
+//        get() = useCase.companyInfo.map { it.nameEN }
 
     val address: Observable<String>
         get() = useCase.companyInfo.map { it.address }
