@@ -12,23 +12,23 @@ class BasicFetchApiViewModel @Inject constructor(private val useCase: BasicFetch
 
     private val disposeBag = DisposeBag()
 
-//    val companyNameJP: Observable<String>
-//        get() = useCase.companyInfo.map { it.nameJP }
+    val companyNameJP: Observable<String>
+        get() = useCase.companyInfo.map { it.nameJP }
 
-//    val companyNameEN: Observable<String>
-//        get() = useCase.companyInfo.map { it.nameEN }
-//
-//    val address: Observable<String>
-//        get() = useCase.companyInfo.map { it.address }
-//
-//    val foundationDate: Observable<String>
-//        get() = useCase.companyInfo.map { it.foundationDate.localizedExpression }
-//
-//    val capital: Observable<String>
-//        get() = useCase.companyInfo.map { it.capital.localizedExpression }
-//
-//    val numberOfEmployees: Observable<String>
-//        get() = useCase.companyInfo.map { "${it.numberOfEmployees}名" }
+    val companyNameEN: Observable<String>
+        get() = useCase.companyInfo.map { it.nameEN }
+
+    val address: Observable<String>
+        get() = useCase.companyInfo.map { it.address }
+
+    val foundationDate: Observable<String>
+        get() = useCase.companyInfo.map { it.foundationDate.localizedExpression }
+
+    val capital: Observable<String>
+        get() = useCase.companyInfo.map { it.capital.localizedExpression }
+
+    val numberOfEmployees: Observable<String>
+        get() = useCase.companyInfo.map { "${it.numberOfEmployees}名" }
 
     override fun onCleared() {
         super.onCleared()
