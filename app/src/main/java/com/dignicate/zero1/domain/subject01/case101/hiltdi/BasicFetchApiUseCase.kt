@@ -6,11 +6,12 @@ import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.RxExtensions.bindTo
 import com.dignicate.zero1.rx.RxExtensions.disposedBy
 import io.reactivex.Observable
+import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 interface BasicFetchApiUseCaseInterface {
-    val companyInfo: Observable<CompanyInfo>
+    val companyInfo: CompanyInfo?
     fun fetch(id: Int)
 }
 
@@ -18,12 +19,12 @@ class BasicFetchApiUse @Inject constructor(repository: SimpleCompanyInfoReposito
 
     private val fetchTrigger = PublishSubject.create<CompanyInfo.Id>()
 
-    private val companyInfoSubject = PublishSubject.create<CompanyInfo>()
+    private val companyInfoSubject = BehaviorSubject.create<CompanyInfo>()
 
     private val disposeBag = DisposeBag()
 
-    override val companyInfo: Observable<CompanyInfo>
-        get() = companyInfoSubject
+    override val companyInfo: CompanyInfo?
+        get() = companyInfoSubject.value
 
     init {
         fetchTrigger

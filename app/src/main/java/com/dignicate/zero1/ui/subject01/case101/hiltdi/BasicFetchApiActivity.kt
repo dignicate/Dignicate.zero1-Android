@@ -4,21 +4,20 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.dignicate.zero1.rx.DisposeBag
-import com.dignicate.zero1.rx.RxExtensions.disposedBy
+import com.dignicate.zero1.ui.theme.Dignicatezero1Theme
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
+import androidx.compose.runtime.getValue
 
 @AndroidEntryPoint
 class BasicFetchApiActivity : ComponentActivity() {
@@ -31,52 +30,72 @@ class BasicFetchApiActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setupBinding()
         setContent {
-            Content {
-                viewModel.didTapFetchButton(123)
-            }
+            Content(viewModel)
         }
     }
 
     private fun setupBinding() {
-        viewModel.companyNameJP
-            .subscribe {
-                Timber.d("companyNameJP: $it")
-            }
-            .disposedBy(disposeBag)
+//        viewModel.companyNameJP
+//            .subscribe {
+//                Timber.d("companyNameJP: $it")
+//            }
+//            .disposedBy(disposeBag)
     }
 }
 
 @Composable
-private fun Content(didTapFetchButton: () -> Unit) {
-    Column(
-        modifier = Modifier.fillMaxWidth().padding(1.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Item()
-        Button(
-            onClick = {
-                didTapFetchButton.invoke()
+private fun Content(viewModel: BasicFetchApiViewModel) {
+    Dignicatezero1Theme {
+        BoxWithConstraints {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "企業情報",
+                    modifier = Modifier.fillMaxWidth()
+                        .padding(top = 32.dp)
+                        .padding(start = 24.dp),
+                    textAlign = TextAlign.Start
+                )
+                Item("和名", viewModel)
+                Column(
+                    verticalArrangement = Arrangement.Bottom,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Button(
+                        onClick = {
+                            viewModel.didTapFetchButton(123)
+                        },
+                        modifier = Modifier.padding(bottom = 32.dp)
+                    ) {
+                        Text("Fetch")
+                    }
+                }
             }
-        ) {
-            Text("Fetch")
         }
     }
 }
 
 @Composable
-private fun Item() {
-    Row(Modifier.padding(1.dp)) {
+private fun Item(title: String, viewModel: BasicFetchApiViewModel) {
+    val name by remember {
+        mutableStateOf(viewModel.companyNameJP)
+    }
+    Row(Modifier.padding(24.dp)) {
         Text(
-            text = "Test"
+            text = title,
+            modifier = Modifier.width(108.dp)
         )
         Text(
-            text = "Value"
+            text = name,
+            modifier = Modifier.fillMaxWidth()
         )
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-private fun Preview() {
-    Content {}
-}
+//@Preview(showBackground = true)
+//@Composable
+//private fun Preview() {
+//    Content {}
+//}
