@@ -34,7 +34,7 @@ class BasicFetchApiActivity : ComponentActivity() {
 @Composable
 private fun Content(viewModel: BasicFetchApiViewModel) {
     Dignicatezero1Theme {
-        BoxWithConstraints {
+        Box {
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -43,15 +43,15 @@ private fun Content(viewModel: BasicFetchApiViewModel) {
                     text = "企業情報",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 32.dp)
+                        .padding(vertical = 32.dp)
                         .padding(start = 24.dp),
                     textAlign = TextAlign.Start
                 )
                 Item("和名", viewModel.companyNameJP)
                 Item("英名", viewModel.companyNameEN)
-                Column(
-                    verticalArrangement = Arrangement.Bottom,
-                    horizontalAlignment = Alignment.CenterHorizontally
+                Row(
+                    verticalAlignment = Alignment.Bottom,
+                    modifier = Modifier.fillMaxHeight()
                 ) {
                     Button(
                         onClick = {
@@ -69,7 +69,11 @@ private fun Content(viewModel: BasicFetchApiViewModel) {
 
 @Composable
 private fun Item(title: String, observable: Observable<String>) {
-    Row(Modifier.padding(24.dp)) {
+    Row(
+        Modifier
+            .padding(horizontal = 24.dp)
+            .padding(bottom = 8.dp)
+    ) {
         val value: String by observable.subscribeAsState("")
         Text(
             text = title,
