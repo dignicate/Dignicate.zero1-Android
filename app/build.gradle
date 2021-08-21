@@ -79,6 +79,8 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 
+    implementation 'androidx.compose.runtime:runtime-rxjava2:1.0.1'
+
     // CoordinatorLayout
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
 
