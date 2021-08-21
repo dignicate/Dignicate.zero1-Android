@@ -11,7 +11,7 @@ import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
 interface BasicFetchApiUseCaseInterface {
-    val companyInfo: CompanyInfo?
+    val companyInfo: Observable<CompanyInfo>
     fun fetch(id: Int)
 }
 
@@ -23,8 +23,8 @@ class BasicFetchApiUse @Inject constructor(repository: SimpleCompanyInfoReposito
 
     private val disposeBag = DisposeBag()
 
-    override val companyInfo: CompanyInfo?
-        get() = companyInfoSubject.value
+    override val companyInfo: Observable<CompanyInfo>
+        get() = companyInfoSubject
 
     init {
         fetchTrigger

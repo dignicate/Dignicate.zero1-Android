@@ -18,6 +18,8 @@ import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.ui.theme.Dignicatezero1Theme
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.runtime.getValue
+import com.dignicate.zero1.rx.RxExtensions.disposedBy
+import timber.log.Timber
 
 @AndroidEntryPoint
 class BasicFetchApiActivity : ComponentActivity() {
@@ -35,6 +37,7 @@ class BasicFetchApiActivity : ComponentActivity() {
     }
 
     private fun setupBinding() {
+
 //        viewModel.companyNameJP
 //            .subscribe {
 //                Timber.d("companyNameJP: $it")
@@ -53,7 +56,8 @@ private fun Content(viewModel: BasicFetchApiViewModel) {
             ) {
                 Text(
                     text = "企業情報",
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .padding(top = 32.dp)
                         .padding(start = 24.dp),
                     textAlign = TextAlign.Start
@@ -88,7 +92,7 @@ private fun Item(title: String, viewModel: BasicFetchApiViewModel) {
             modifier = Modifier.width(108.dp)
         )
         Text(
-            text = name,
+            text = "$name",
             modifier = Modifier.fillMaxWidth()
         )
     }

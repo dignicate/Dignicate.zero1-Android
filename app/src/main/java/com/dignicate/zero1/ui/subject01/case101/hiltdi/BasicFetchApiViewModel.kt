@@ -12,8 +12,8 @@ class BasicFetchApiViewModel @Inject constructor(private val useCase: BasicFetch
 
     private val disposeBag = DisposeBag()
 
-    val companyNameJP: String
-        get() = useCase.companyInfo?.nameJP ?: ""
+//    val companyNameJP: Observable<String>
+//        get() = useCase.companyInfo.map { it.nameJP }
 
 //    val companyNameEN: Observable<String>
 //        get() = useCase.companyInfo.map { it.nameEN }
