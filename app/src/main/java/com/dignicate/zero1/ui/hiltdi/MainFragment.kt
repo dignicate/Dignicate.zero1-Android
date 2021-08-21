@@ -1,5 +1,6 @@
 package com.dignicate.zero1.ui.hiltdi
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dignicate.zero1.ui.manualdi.MenuDefinition
+import com.dignicate.zero1.ui.subject01.case101.hiltdi.BasicFetchApiActivity
 
 class MainFragment : Fragment() {
 
@@ -35,7 +37,7 @@ class MainFragment : Fragment() {
                 Content(viewModel.rowStates) {
                     when (it) {
                         MenuDefinition.Item.BASIC_FETCH -> {
-
+                            startActivity(Intent(requireContext(), BasicFetchApiActivity::class.java))
                         }
                     }
                 }
