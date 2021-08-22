@@ -1,27 +1,6 @@
-package com.dignicate.zero1.ui.main
+package com.dignicate.zero1.ui.manualdi
 
-import androidx.lifecycle.ViewModel
-import com.dignicate.zero1.rx.DisposeBag
-import io.reactivex.Observable
-import io.reactivex.subjects.PublishSubject
-
-class MainViewModel : ViewModel() {
-
-    private val disposeBag = DisposeBag()
-
-    private val rowStatesSubject = PublishSubject.create<List<RowState>>()
-
-    val rowStates: Observable<List<RowState>>
-        get() = rowStatesSubject
-
-    fun onActivityCreated() {
-        rowStatesSubject.onNext(ContentStructure.rowStates)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        disposeBag.clear()
-    }
+object MenuDefinition {
 
     sealed class RowState {
         class SectionRow(val data: Section): RowState()
@@ -79,11 +58,11 @@ class MainViewModel : ViewModel() {
             Item.SIMPLE_VALIDATION,
             Item.VALIDATE_AND_AUTO_CORRECT,
             Item.STORE_INPUTS_OVER_SCREEN
-        ));
+        ))
     }
 
-    enum class Item(val title: String, val isAvailable: Boolean) {
-        BASIC_FETCH("Basic fetch over HTTP", true),
+    enum class Item(val title: String, val isManualAvailable: Boolean, val isHiltAvailable: Boolean = false) {
+        BASIC_FETCH("Basic fetch over HTTP", true, true),
         FETCH_WITH_DATA_STATE("Fetch with data state", true),
         FETCH_AND_SAVE_DATA("Save fetched data into local device", true),
         POST_AND_REFRESH("Post data and refresh view", false),
@@ -91,6 +70,7 @@ class MainViewModel : ViewModel() {
         PAGINATION("Pagination", false),
         SIMPLE_VALIDATION("Simple validation", false),
         VALIDATE_AND_AUTO_CORRECT("Validate and auto-correct", false),
-        STORE_INPUTS_OVER_SCREEN("Store inputs over screens", false);
+        STORE_INPUTS_OVER_SCREEN("Store inputs over screens", false)
     }
 }
+

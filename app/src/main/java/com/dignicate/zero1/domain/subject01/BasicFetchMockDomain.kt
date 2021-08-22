@@ -10,7 +10,7 @@ object BasicFetchMockDomain {
         val day: Int
     ) {
         val localizedExpression: String
-            get() = "令和${year - 2018}年${year}月${day}日"
+            get() = "令和${year - 2018}年${month}月${day}日"
     }
 
     sealed class Currency {

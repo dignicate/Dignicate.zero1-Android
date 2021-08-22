@@ -1,4 +1,4 @@
-package com.dignicate.zero1.ui.main
+package com.dignicate.zero1.ui.manualdi
 
 import android.content.Context
 import android.content.Intent
@@ -15,9 +15,12 @@ import com.dignicate.zero1.R
 import com.dignicate.zero1.databinding.MainFragmentBinding
 import com.dignicate.zero1.rx.DisposeBag
 import com.dignicate.zero1.rx.RxExtensions.disposedBy
-import com.dignicate.zero1.ui.subject01.case101.BasicFetchApiActivity
+import com.dignicate.zero1.ui.subject01.case101.manualdi.BasicFetchApiActivity
 import com.dignicate.zero1.ui.subject01.case102.FetchWithDataStateActivity
 import com.dignicate.zero1.ui.subject01.case103.FetchAndSaveDataActivity
+import com.dignicate.zero1.ui.manualdi.MenuDefinition.Item
+import com.dignicate.zero1.ui.manualdi.MenuDefinition.RowState
+import com.dignicate.zero1.ui.manualdi.MenuDefinition.ContentStructure
 import timber.log.Timber
 
 class MainFragment : Fragment() {
@@ -71,29 +74,29 @@ class MainFragment : Fragment() {
             layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
             adapter = Adapter {
                 when (it) {
-                    MainViewModel.Item.BASIC_FETCH -> {
+                    Item.BASIC_FETCH -> {
                         startActivity(Intent(requireContext(), BasicFetchApiActivity::class.java))
                     }
-                    MainViewModel.Item.FETCH_WITH_DATA_STATE -> {
+                    Item.FETCH_WITH_DATA_STATE -> {
                         startActivity(Intent(requireContext(), FetchWithDataStateActivity::class.java))
                     }
-                    MainViewModel.Item.FETCH_AND_SAVE_DATA -> {
+                    Item.FETCH_AND_SAVE_DATA -> {
                         startActivity(Intent(requireContext(), FetchAndSaveDataActivity::class.java))
                     }
-                    // TODO: Must be exhaustive.
-                    else -> {
-
-                    }
+//                    // TODO: Must be exhaustive.
+//                    else -> {
+//
+//                    }
                 }
             }
         }
     }
 
-    class Adapter(val onClick: (MainViewModel.Item) -> Unit) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+    class Adapter(private val onClick: (Item) -> Unit) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
-        private var data: List<MainViewModel.RowState> = emptyList()
+        private var data: List<RowState> = emptyList()
 
-        fun setData(data: List<MainViewModel.RowState>) {
+        fun setData(data: List<RowState>) {
             this.data = data
             notifyDataSetChanged()
         }
@@ -104,9 +107,9 @@ class MainFragment : Fragment() {
         }
 
         override fun getItemViewType(position: Int): Int {
-            return when (MainViewModel.ContentStructure.rowOf(position)) {
-                is MainViewModel.RowState.SectionRow -> ViewType.SECTION.value
-                is MainViewModel.RowState.ItemRow -> ViewType.ITEM.value
+            return when (ContentStructure.rowOf(position)) {
+                is RowState.SectionRow -> ViewType.SECTION.value
+                is RowState.ItemRow -> ViewType.ITEM.value
             }
         }
 
@@ -157,11 +160,11 @@ class MainFragment : Fragment() {
             private val titleLabel: TextView = view.findViewById(R.id.mainRowItemTitle)
             private val background: View = view.findViewById(R.id.mainRowItemRoot)
 
-            fun configure(number: Int, item: MainViewModel.Item, onClick: (MainViewModel.Item) -> Unit) {
+            fun configure(number: Int, item: Item, onClick: (Item) -> Unit) {
                 numberLabel.text = "$number"
                 titleLabel.text = item.title
                 background.setOnClickListener { onClick(item) }
-                if (item.isAvailable) {
+                if (item.isManualAvailable) {
                     titleLabel.setTextColor(ContextCompat.getColor(context, R.color.top_view_cell_text_enabled))
                     background.setBackgroundResource(R.color.top_view_cell_background_enabled)
                 } else {

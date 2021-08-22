@@ -1,7 +1,7 @@
-package com.dignicate.zero1.ui.subject01.case101
+package com.dignicate.zero1.ui.subject01.case101.manualdi
 
 import androidx.lifecycle.ViewModel
-import com.dignicate.zero1.domain.subject01.case101.BasicFetchApiUseCase
+import com.dignicate.zero1.domain.subject01.case101.manualdi.BasicFetchApiUseCase
 import com.dignicate.zero1.infra.mock.subject01.SimpleCompanyInfoRepositoryMock
 import com.dignicate.zero1.rx.DisposeBag
 import io.reactivex.Observable
