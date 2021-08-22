@@ -14,7 +14,7 @@ object RepositoryModule {
 
     @Provides
     fun providesSimpleCompanyInfoRepository(): SimpleCompanyInfoRepositoryInterface {
-        return SimpleCompanyInfoRepositoryMock(4)
+        return SimpleCompanyInfoRepositoryMock(2500)
     }
 
 }
