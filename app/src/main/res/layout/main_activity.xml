@@ -19,6 +19,7 @@
             android:paddingStart="8dp"
             app:layout_scrollFlags="snap"
             app:tabGravity="fill"
+            app:tabIndicator="@drawable/tab_indicator"
             app:tabIndicatorColor="@android:color/transparent"
             app:tabIndicatorHeight="24dp"
             app:tabIndicatorGravity="center"
