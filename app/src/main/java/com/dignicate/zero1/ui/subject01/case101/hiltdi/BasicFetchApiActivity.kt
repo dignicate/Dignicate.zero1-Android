@@ -54,6 +54,8 @@ private fun Content(data: BasicFetchApiViewModel.Data, didTapFetchButton: () -> 
                 Item("英名", data.companyNameEN)
                 Item("所在地", data.address)
                 Item("設立日", data.foundationDate)
+                Item("資本金", data.capital)
+                Item("従業員数", data.numberOfEmployees)
                 Row(
                     verticalAlignment = Alignment.Bottom,
                     modifier = Modifier.fillMaxHeight()
@@ -99,7 +101,9 @@ private fun Preview() {
             companyNameJP = Observable.just("name JP"),
             companyNameEN = Observable.just("name EN"),
             address = Observable.just(""),
-            foundationDate = Observable.just("")
+            foundationDate = Observable.just(""),
+            capital = Observable.just(""),
+            numberOfEmployees = Observable.just("")
         )
     ) {}
 }

@@ -16,7 +16,9 @@ class BasicFetchApiViewModel @Inject constructor(private val useCase: BasicFetch
         val companyNameJP: Observable<String>,
         val companyNameEN: Observable<String>,
         val address: Observable<String>,
-        val foundationDate: Observable<String>
+        val foundationDate: Observable<String>,
+        val capital: Observable<String>,
+        val numberOfEmployees: Observable<String>
     )
 
     val data: Data
@@ -24,14 +26,11 @@ class BasicFetchApiViewModel @Inject constructor(private val useCase: BasicFetch
             companyNameJP = useCase.companyInfo.map { it.nameJP },
             companyNameEN = useCase.companyInfo.map { it.nameEN },
             address = useCase.companyInfo.map { it.address },
-            foundationDate = useCase.companyInfo.map { it.foundationDate.localizedExpression }
+            foundationDate = useCase.companyInfo.map { it.foundationDate.localizedExpression },
+            capital = useCase.companyInfo.map { it.capital.localizedExpression },
+            numberOfEmployees = useCase.companyInfo.map { "${it.numberOfEmployees}名" }
         )
 
-    val capital: Observable<String>
-        get() = useCase.companyInfo.map { it.capital.localizedExpression }
-
-    val numberOfEmployees: Observable<String>
-        get() = useCase.companyInfo.map { "${it.numberOfEmployees}名" }
 
     override fun onCleared() {
         super.onCleared()
