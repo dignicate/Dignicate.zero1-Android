@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dignicatezero1">
-        <activity android:name=".ui.subject01.case102.FetchWithDataStateActivity" />
+        <activity android:name=".ui.subject01.case102.manualdi.FetchWithDataStateActivity" />
         <activity android:name=".ui.subject01.case103.FetchAndSaveDataActivity" />
         <activity
             android:name=".ui.subject01.case101.manualdi.BasicFetchApiActivity"

@@ -1,4 +1,4 @@
-package com.dignicate.zero1.ui.subject01.case102
+package com.dignicate.zero1.ui.subject01.case102.manualdi
 
 import android.view.View
 import androidx.lifecycle.ViewModel
