@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.dignicate.zero1.domain.subject01.case101.hiltdi.BasicFetchApiUseCaseInterface
 import com.dignicate.zero1.rx.DisposeBag
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.Observable
 import javax.inject.Inject
 
 @HiltViewModel
@@ -12,17 +11,8 @@ class BasicFetchApiViewModel @Inject constructor(private val useCase: BasicFetch
 
     private val disposeBag = DisposeBag()
 
-    data class Data(
-        val companyNameJP: Observable<String>,
-        val companyNameEN: Observable<String>,
-        val address: Observable<String>,
-        val foundationDate: Observable<String>,
-        val capital: Observable<String>,
-        val numberOfEmployees: Observable<String>
-    )
-
-    val data: Data
-        get() = Data(
+    val data: CompanyInfoViewData
+        get() = CompanyInfoViewData(
             companyNameJP = useCase.companyInfo.map { it.nameJP },
             companyNameEN = useCase.companyInfo.map { it.nameEN },
             address = useCase.companyInfo.map { it.address },
@@ -30,7 +20,6 @@ class BasicFetchApiViewModel @Inject constructor(private val useCase: BasicFetch
             capital = useCase.companyInfo.map { it.capital.localizedExpression },
             numberOfEmployees = useCase.companyInfo.map { "${it.numberOfEmployees}名" }
         )
-
 
     override fun onCleared() {
         super.onCleared()
