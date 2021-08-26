@@ -100,3 +100,9 @@ dependencies {
     testImplementation 'com.google.dagger:hilt-android-testing:2.38.1'
     testAnnotationProcessor 'com.google.dagger:hilt-compiler:2.38.1'
 }
+
+kapt {
+    javacOptions {
+        option("-Adagger.hilt.android.internal.disableAndroidSuperclassValidation=true")
+    }
+}
