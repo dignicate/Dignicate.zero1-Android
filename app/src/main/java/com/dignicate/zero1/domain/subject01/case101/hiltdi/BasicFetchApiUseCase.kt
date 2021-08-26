@@ -15,7 +15,7 @@ interface BasicFetchApiUseCaseInterface {
     fun fetch(id: Int)
 }
 
-class BasicFetchApiUse @Inject constructor(repository: SimpleCompanyInfoRepositoryInterface) : BasicFetchApiUseCaseInterface {
+class BasicFetchApiUseCase @Inject constructor(repository: SimpleCompanyInfoRepositoryInterface) : BasicFetchApiUseCaseInterface {
 
     private val fetchTrigger = PublishSubject.create<CompanyInfo.Id>()
 
