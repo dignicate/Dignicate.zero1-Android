@@ -24,6 +24,7 @@ class BasicFetchApiViewModel @Inject constructor(private val useCase: BasicFetch
     override fun onCleared() {
         super.onCleared()
         disposeBag.clear()
+        useCase.dispose()
     }
 
     fun didTapFetchButton(id: Int) {

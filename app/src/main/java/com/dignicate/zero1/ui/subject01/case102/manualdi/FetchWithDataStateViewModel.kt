@@ -2,7 +2,7 @@ package com.dignicate.zero1.ui.subject01.case102.manualdi
 
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.dignicate.zero1.domain.subject01.case102.FetchWithDataStateUseCase
+import com.dignicate.zero1.domain.subject01.case102.manualdi.FetchWithDataStateUseCase
 import com.dignicate.zero1.infra.mock.subject01.SimpleCompanyInfoRepositoryMock
 import com.dignicate.zero1.rx.DisposeBag
 import io.reactivex.Observable
