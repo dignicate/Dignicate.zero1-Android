@@ -1,7 +1,6 @@
 package com.dignicate.zero1.ui.subject01.case102.hiltdi
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -38,7 +37,7 @@ private fun Preview() {
             foundationDate = Observable.just(""),
             capital = Observable.just(""),
             numberOfEmployees = Observable.just(""),
-            visibilityOfProgress = Observable.just(View.VISIBLE)
+            visible = Observable.just(true)
         )
     ) {}
 }

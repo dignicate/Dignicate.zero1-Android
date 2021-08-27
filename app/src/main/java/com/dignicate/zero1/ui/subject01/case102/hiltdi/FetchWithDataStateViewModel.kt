@@ -1,6 +1,5 @@
 package com.dignicate.zero1.ui.subject01.case102.hiltdi
 
-import android.view.View
 import androidx.lifecycle.ViewModel
 import com.dignicate.zero1.domain.subject01.case102.hiltdi.FetchWithDataStateUseCaseInterface
 import com.dignicate.zero1.rx.DisposeBag
@@ -22,16 +21,11 @@ class FetchWithDataStateViewModel @Inject constructor(private val useCase: Fetch
             foundationDate = useCase.companyInfo.map { it.foundationDate.localizedExpression },
             capital = useCase.companyInfo.map { it.capital.localizedExpression },
             numberOfEmployees = useCase.companyInfo.map { "${it.numberOfEmployees}名" },
-            visibilityOfProgress = visibilityOfProgress
+            visible = visible
         )
 
-    private val visibilityOfProgress: Observable<Int>
-        get() = useCase.isInProgress
-            .map {
-                if (it) View.VISIBLE else View.GONE
-            }
-            .distinctUntilChanged()
-            .startWith(View.GONE)
+    private val visible: Observable<Boolean>
+        get() = useCase.isInProgress.distinctUntilChanged()
 
     override fun onCleared() {
         super.onCleared()

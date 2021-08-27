@@ -9,5 +9,5 @@ data class CompanyInfoViewData(
     val foundationDate: Observable<String>,
     val capital: Observable<String>,
     val numberOfEmployees: Observable<String>,
-    val visibilityOfProgress: Observable<Int>? = null
+    val visible: Observable<Boolean> = Observable.just(false)
 )
