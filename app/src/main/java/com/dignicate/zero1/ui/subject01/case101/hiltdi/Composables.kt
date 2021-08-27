@@ -1,7 +1,9 @@
 package com.dignicate.zero1.ui.subject01.case101.hiltdi
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -50,6 +52,15 @@ object Composables {
                         }
                     }
                 }
+            }
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Bottom
+            ) {
+                CircularProgressIndicator(
+                    modifier = Modifier.padding(bottom = 128.dp)
+                )
             }
         }
     }
