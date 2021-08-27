@@ -8,5 +8,6 @@ data class CompanyInfoViewData(
     val address: Observable<String>,
     val foundationDate: Observable<String>,
     val capital: Observable<String>,
-    val numberOfEmployees: Observable<String>
+    val numberOfEmployees: Observable<String>,
+    val visibilityOfProgress: Observable<Int>? = null
 )

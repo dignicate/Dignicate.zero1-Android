@@ -63,7 +63,7 @@ object MenuDefinition {
 
     enum class Item(val title: String, val isManualAvailable: Boolean, val isHiltAvailable: Boolean = false) {
         BASIC_FETCH("Basic fetch over HTTP", true, true),
-        FETCH_WITH_DATA_STATE("Fetch with data state", true),
+        FETCH_WITH_DATA_STATE("Fetch with data state", true, true),
         FETCH_AND_SAVE_DATA("Save fetched data into local device", true),
         POST_AND_REFRESH("Post data and refresh view", false),
         LIST_AND_DETAIL("List and detail", false),

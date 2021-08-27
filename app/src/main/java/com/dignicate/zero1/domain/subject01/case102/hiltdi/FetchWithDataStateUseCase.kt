@@ -14,6 +14,7 @@ import com.dignicate.zero1.domain.subject01.case102.hiltdi.FetchWithDataStateUse
 
 interface FetchWithDataStateUseCaseInterface {
     val companyInfo: Observable<CompanyInfo>
+    val isInProgress: Observable<Boolean>
     fun fetch(id: Int)
     fun dispose()
 }
@@ -42,7 +43,7 @@ class FetchWithDataStateUseCase @Inject constructor(repository: SimpleCompanyInf
                     }
                 }
 
-    val isInProgress: Observable<Boolean>
+    override val isInProgress: Observable<Boolean>
         get() =
             companyInfoDataStateSubject
                 .map {
