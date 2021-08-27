@@ -1,4 +1,4 @@
-package com.dignicate.zero1.domain.subject01.case102
+package com.dignicate.zero1.domain.subject01.case102.manualdi
 
 import com.dignicate.zero1.domain.subject01.CompanyInfo
 import com.dignicate.zero1.domain.subject01.case101.SimpleCompanyInfoRepositoryInterface

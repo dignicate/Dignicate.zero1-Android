@@ -13,9 +13,10 @@ import javax.inject.Inject
 interface BasicFetchApiUseCaseInterface {
     val companyInfo: Observable<CompanyInfo>
     fun fetch(id: Int)
+    fun dispose()
 }
 
-class BasicFetchApiUse @Inject constructor(repository: SimpleCompanyInfoRepositoryInterface) : BasicFetchApiUseCaseInterface {
+class BasicFetchApiUseCase @Inject constructor(repository: SimpleCompanyInfoRepositoryInterface) : BasicFetchApiUseCaseInterface {
 
     private val fetchTrigger = PublishSubject.create<CompanyInfo.Id>()
 
@@ -37,5 +38,9 @@ class BasicFetchApiUse @Inject constructor(repository: SimpleCompanyInfoReposito
 
     override fun fetch(id: Int) {
         fetchTrigger.onNext(CompanyInfo.Id(id))
+    }
+
+    override fun dispose() {
+        disposeBag.clear()
     }
 }
