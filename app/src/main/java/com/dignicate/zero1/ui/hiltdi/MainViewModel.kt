@@ -6,8 +6,7 @@ import javax.inject.Inject
 import com.dignicate.zero1.ui.manualdi.MenuDefinition.ContentStructure
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
-) : ViewModel() {
+class MainViewModel @Inject constructor() : ViewModel() {
 
     val rowStates = ContentStructure.rowStates
 }

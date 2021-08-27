@@ -24,7 +24,9 @@ import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.dignicate.zero1.ui.manualdi.MenuDefinition
+import com.dignicate.zero1.ui.manualdi.MenuDefinition.Item
 import com.dignicate.zero1.ui.subject01.case101.hiltdi.BasicFetchApiActivity
+import com.dignicate.zero1.ui.subject01.case102.hiltdi.FetchWithDataStateActivity
 import com.dignicate.zero1.ui.theme.Gray
 import com.dignicate.zero1.ui.theme.LightGray
 import com.dignicate.zero1.ui.theme.Purple700
@@ -43,8 +45,11 @@ class MainFragment : Fragment() {
             setContent {
                 Content(viewModel.rowStates) {
                     when (it) {
-                        MenuDefinition.Item.BASIC_FETCH -> {
+                        Item.BASIC_FETCH -> {
                             startActivity(Intent(requireContext(), BasicFetchApiActivity::class.java))
+                        }
+                        Item.FETCH_WITH_DATA_STATE -> {
+                            startActivity(Intent(requireContext(), FetchWithDataStateActivity::class.java))
                         }
                     }
                 }
