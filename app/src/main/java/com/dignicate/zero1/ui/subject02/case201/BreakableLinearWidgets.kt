@@ -11,22 +11,21 @@ import androidx.compose.material.Text
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import com.dignicate.zero1.ui.theme.Dignicatezero1Theme
+import com.google.accompanist.flowlayout.FlowRow
 
 object BreakableLinearWidgets {
 
     @Composable
     fun Container(tags: List<String>) {
         Dignicatezero1Theme {
-            Row(
+            FlowRow(
                 modifier = Modifier
                     .width(240.dp)
-                ,
-                verticalAlignment = Alignment.Top
             ) {
                 tags.forEach {
                     Box(
                         modifier = Modifier
-                            .padding(horizontal = 1.dp, vertical = 2.dp)
+                            .padding(horizontal = 1.dp, vertical = 1.dp)
                             .background(Color.Black)
                     ) {
                         Text(
@@ -46,6 +45,8 @@ object BreakableLinearWidgets {
 @Composable
 private fun Preview() {
     BreakableLinearWidgets.Container(
-        tags = listOf("古典", "経済学", "宇宙物理学", "世界史", "シンギュラリティー", "80億年後の地球",  "ソマリア", "どうぶつの森", "ローマ帝国")
+        tags = listOf(
+            "古典", "経済学", "宇宙物理学", "世界史", "シンギュラリティー",
+            "80億年後の地球",  "領域展開", "ネアンデルタール人", "麻雀")
     )
 }
