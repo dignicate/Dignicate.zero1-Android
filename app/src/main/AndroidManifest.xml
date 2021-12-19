@@ -21,6 +21,9 @@
         <activity
             android:name=".ui.subject01.case102.hiltdi.FetchWithDataStateActivity"
             android:label="Basic Fetch API"/>
+        <activity
+            android:name=".ui.subject02.case201.BreakableLinearWidgetsActivity"
+            android:label="Layout"/>
         <activity android:name=".ui.manualdi.MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
